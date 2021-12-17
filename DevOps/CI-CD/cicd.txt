@@ -1,0 +1,5 @@
+Proces CI/CD będzie zautomatyzowany przy użyciu GitHub Actions.
+
+Po każdym commit'cie do gałęzi master projekt będzie automatycznie budowany i aktualizowany na serwerze testowym.
+
+Po skończeniu testów manualnych i automatycznych, proces aktualizacji na środowisku produkcyjnym będzie uruchamiany manualnie. 
