@@ -1,11 +1,7 @@
 <h1 align="center">Hi 👋, We are Projekt Zespołowy 2021 Group 10</h1>
 <h3 align="center">A passionate developer team from Poland</h3>
 <h3 align="center">The team:</h3>
-<h5 align="center">Igor Mazur<br>Arkadiusz Głąb</h5>
-<h5 align="center">Arkadiusz Głąb</h5>
-<h5 align="center">Karol Kula</h5>
-<h5 align="center">Adam Chęciński</h5>
-<h5 align="center">Adam Kazimierak</h5>
+<h5 align="center">Igor Mazur<br>Arkadiusz Głąb<br>Karol Kula<br>Adam Chęciński<br>Adam Kazimierak</h5>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=mystch&label=Profile%20views&color=0e75b6&style=flat" alt="mystch" /> </p>
 
