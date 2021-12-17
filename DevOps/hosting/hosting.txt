@@ -1,0 +1,4 @@
+Projekt będzie hostowany na platformie heroku.com.
+Platforma udostępnia 550 darmowych godzin działania aplikacji miesięcznie.
+Zweryfikowani użytkownicy mają dostęp do 900 godzin miesięcznie.
+Aplikacja usypia się i przestaje naliczać czas po godzinie nieaktywności.
