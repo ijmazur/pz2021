@@ -1,1 +1,5 @@
 Projekt będzie używał bazy danych PostgreSQL.
+
+Będą dwie hostowane bazy danych.
+Baza testowa uzupełniona przypadkowymi danymi stosowana przy programowaniu aplikacji i testowaniu.
+Baza produkcyjna.
