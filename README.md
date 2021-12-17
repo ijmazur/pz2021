@@ -1,6 +1,6 @@
 <h1 align="center">Hi 👋, We are Projekt Zespołowy 2021 Group 10</h1>
 <h3 align="center">A passionate developer team from Poland</h3>
-<h4 align="center">The team:</h4>
+<h3 align="center">The team:</h3>
 <h5 align="center">Igor Mazur</h5>
 <h5 align="center">Arkadiusz Głąb</h5>
 <h5 align="center">Karol Kula</h5>
