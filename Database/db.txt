@@ -1,0 +1,1 @@
+Projekt będzie używał bazy danych PostgreSQL.
