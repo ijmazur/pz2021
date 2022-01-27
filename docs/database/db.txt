@@ -5,3 +5,5 @@ Baza testowa uzupełniona przypadkowymi danymi stosowana przy programowaniu apli
 Baza produkcyjna.
 
 Dostępny będzie także obraz dockerowy bazy testowej.
+
+Będziemy przeprowadzać testy wydajnościowe bazy danych podczas implementacji projektu.
