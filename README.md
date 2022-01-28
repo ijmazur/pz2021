@@ -1,6 +1,6 @@
 <h1 align="center">Hi 👋, We are Projekt Zespołowy 2021 Group 10</h1>
 <h3 align="center">A passionate developer team from Poland</h3>
-<h4 align="center">Igor Mazur<br>Arkadiusz Głąb<br>Karol Kula<br>Adam Chęciński<br>Adam Kazimierak</h4>
+<h4 align="center">Igor Mazur<br>Karol Kula<br>Arkadiusz Głąb<br>Adam Chęciński<br>Adam Kazimierak</h4>
 
 
 <h3 align="left">Languages and Tools:</h3>
