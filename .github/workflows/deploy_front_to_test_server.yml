@@ -15,10 +15,10 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
-      - name: change directory to app frontend
-        run: cd app/frontend
       - name: npm install
-        run: npm install
+        run: |
+          cd app/frontend
+          npm install
       - name: deploy
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
