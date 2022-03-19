@@ -1,6 +1,7 @@
 name: Deploy frontend to test server
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - 'app/frontend/**'
