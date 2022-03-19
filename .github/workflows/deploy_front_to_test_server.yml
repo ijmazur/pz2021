@@ -26,4 +26,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API}}
           heroku_app_name: 'test-zamow-jedzenie'
           heroku_email: 'adam.b.checinski@gmail.com'
-          dir: 'app/frontend'
+          appdir: 'app/frontend'
