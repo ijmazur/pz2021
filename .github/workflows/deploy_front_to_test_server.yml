@@ -2,6 +2,8 @@ name: Deploy frontend to test server
 
 on:
   push:
+    paths:
+      - 'app/frontend/**'
     branches:
       - master
 
