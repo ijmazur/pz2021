@@ -1,6 +1,7 @@
-name: Deploy frontend
+name: Deploy frontend to production
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
