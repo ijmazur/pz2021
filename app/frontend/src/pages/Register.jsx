@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './Login.css';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -270,7 +271,7 @@ export default function SignUp(props) {
   }
 
   return (
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" className="center">
         <CssBaseline />
         <Box
           sx={{

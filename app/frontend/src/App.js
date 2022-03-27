@@ -3,8 +3,9 @@ import IconButton from '@mui/material/IconButton';
 import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import SignUp from './pages/signUp';
+import Register from './pages/Register';
 import { Routes, Route, BrowserRouter as Router, Navigate } from 'react-router-dom';
+import Login from './pages/Login';
 
 
 
@@ -47,9 +48,9 @@ export default function ToggleColorMode() {
       <ThemeProvider theme={theme}>
         <Router > {/* The Switch decides which component to show based on the current URL.*/}
           <Routes>
-            <Route path="/" element={<Navigate replace to='/signUp' />} />
-            <Route exact path='/signUp' element={<SignUp
-              button={<ThemeButton />}/>}/>
+            <Route path="/" element={<Navigate replace to='/login' />} />
+            <Route exact path='/register' element={<Register button={<ThemeButton />}/>}/>
+            <Route path="/login" element={<Login button={<ThemeButton />}/>} />
           </Routes>
         </Router >
 
