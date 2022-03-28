@@ -156,6 +156,8 @@ CSRF_TRUSTED_ORIGINS = [
     'https://www.test2.org',
 ]
 
+CORS_ALLOW_ALL_ORIGINS = True
+
 CORS_ALLOW_CREDENTIALS = True
 
 from datetime import timedelta
