@@ -1,0 +1,22 @@
+name: Deploy backend to test server
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'app/backend/**'
+    branches:
+      - master
+
+jobs:
+  deploy_front_to_test:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: deploy
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API}}
+          heroku_app_name: 'test-api-zamow-jedzenie'
+          heroku_email: 'adam.b.checinski@gmail.com'
+          appdir: 'app/backend/mysite/app'
