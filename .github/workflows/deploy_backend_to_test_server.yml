@@ -9,7 +9,7 @@ on:
       - master
 
 jobs:
-  deploy_front_to_test:
+  deploy_backend_to_test:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
