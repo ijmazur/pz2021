@@ -17,6 +17,9 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './Login.css';
+import authService from '../services/auth.service';
+import { useLocation } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -35,6 +38,9 @@ const theme = createTheme();
 
 export default function SignIn(props) {
 
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  // const { data } = state;
   const startValid = { isValid: "no", errorText: "", focused: false }
   const [passwordVisibility, setPasswordVisibility] = React.useState(false);
   const [passwordValidation, setPasswordValidation] = React.useState(startValid);
@@ -67,11 +73,45 @@ export default function SignIn(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    const username = data.get('email');
+    const password = data.get('password');
+
+    authService.login(username, password, data).then(
+      (success) => {
+        if (data === 'user') {
+          navigate('/dashboard');
+        } else {
+          navigate('/restaurantview');
+        }
+      },
+      (error) => {
+        alert('You entered wrong username or password!');
+      }
+    );
     console.log({
-      email: data.get('email'),
+      username: data.get('email'),
       password: data.get('password'),
     });
   };
+
+  // const sumbitLogin = (event) => {
+  //   event.preventDefault();
+  //   const username = event.target[0].value;
+  //   const password = event.target[1].value;
+  //   // const data = new FormData(event.currentTarget);
+  //   authService.login(username, password, data).then(
+  //     (success) => {
+  //       if (data === 'user') {
+  //         navigate('/dashboard');
+  //       } else {
+  //         navigate('/restaurantview');
+  //       }
+  //     },
+  //     (error) => {
+  //       alert('You entered wrong username or password!');
+  //     }
+  //   );
+  // };
 
   return (
     <Container component="main" maxWidth="xs" className="center">

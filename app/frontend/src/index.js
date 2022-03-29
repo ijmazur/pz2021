@@ -7,7 +7,7 @@ import { StyledEngineProvider } from '@mui/material/styles';
 
 ReactDOM.render(
 <StyledEngineProvider injectFirst>
-<ToggleColorMode />,
+<ToggleColorMode />
 </StyledEngineProvider>,
 
   document.getElementById('root')
