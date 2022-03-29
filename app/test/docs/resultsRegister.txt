@@ -1,0 +1,50 @@
+1 Wrong password  - Passed 
+2 Registration completed  - Passed 
+3 Registration completed  - Passed 
+4 Wrong password  - Passed 
+5 Registration completed  - Passed 
+6 Registration completed  - Passed 
+7 Registration completed  - Passed 
+8 Wrong password  - Passed 
+9 Registration completed  - Passed 
+10 Registration completed  - Passed 
+11 Registration completed  - Passed 
+12 Registration completed  - Passed 
+13 Registration completed  - Passed 
+14 Registration completed  - Passed 
+15 Wrong password  - Passed 
+16 Registration completed  - Passed 
+17 Registration completed  - Passed 
+18 Registration completed  - Passed 
+19 Registration completed  - Passed 
+20 Registration completed  - Passed 
+21 Registration completed  - Passed 
+22 Registration completed  - Passed 
+23 Registration completed  - Passed 
+24 Registration completed  - Passed 
+25 Registration completed  - Passed 
+26 Registration completed  - Passed 
+27 Wrong password  - Passed 
+28 Registration completed   - Not passed 
+29 Wrong password  - Passed 
+30 Registration completed  - Passed 
+31 Registration completed  - Passed 
+32 Registration completed   - Not passed 
+33 Wrong password  - Passed 
+34 Phone number too short - Passed 
+35 Registration completed  - Passed 
+36 Registration completed  - Passed 
+37 Phone number too short - Passed 
+38 Phone number too short - Passed 
+39 Phone number too short - Passed 
+40 Wrong password  - Passed 
+41 Phone number too short - Passed 
+42 Wrong email - Passed 
+43 Registration completed  - Passed 
+44 Wrong email - Passed 
+45 Registration completed  - Passed
+46 Postal code too short  - Passed
+47 Registration completed  - Passed 
+48 Wrong password  - Passed 
+49 Postal code too short - Passed 
+50 Postal code too short - Passed 
