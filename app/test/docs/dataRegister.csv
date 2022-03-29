@@ -1,0 +1,51 @@
+﻿testID,testCase,firstName,lastName,street,city,postal,number,mail,password
+1,A05,Wilhelm,Pawlik,Rolnicza 1,Szczecin,36-259,962957134,mollis@gmail.com,ikYRIt51v8
+2,A01,Janusz,Kurek,Sienkiewicza 21,Koszalin,86-899,255168268,ultricies.ornare.elit@outlook.net,C4YgyLl@G7t
+3,A01,Teofil,Świątek,Matejki 61,Łomża,77-599,569692004,eget.magna.suspendisse@outlook.com,040AjE8^Yw
+4,A05,Olivia,Kaczmarczyk,Norwida 11,Tychy,69-247,135026815,nam@hotmail.net,PKsJ7v5HmM
+5,A01,Klaudiusz,Polak,Świętojańska 13,Przemyśl,35-677,350837476,accumsan@outlook.net,$4wS20#k^7
+6,A01,Emil,Orłowski,Parkowa 31,Rybnik,47-563,557170422,nullam.scelerisque@onet.pl,nH03(B%j9^
+7,A01,Damian,Górecki,Piesza 48,Wrocław,58-873,441137766,ullamcorper@onet.net,t33H1P7)!*
+8,A05,Błażej,Sosnowski,Krzywoń 34,Bielsko-Biała,54-888,818195379,nunc.quisque@outlook.net,^yQ%JFUW)(
+9,A01,Roman,Mazurkiewicz,Akacjowa 56,Rybnik,68-181,320838563,parturient.montes@hotmail.org,2)eVCRdhTR
+10,A01,Aldona,Stankiewicz,Obwodowa 72,Krosno,55-158,548928088,dictum.mi@o2.net,L@U)9*0i05
+11,A01,Jarosław,Bąk,Sucharskiego 81,Gdynia,90-124,976164373,dolor.vitae@outlook.com,6fJ3ae))31
+12,A01,Joanna,Lipińska,Zimowa 51,Sosnowiec,76-389,981145457,arcu.vestibulum.ante@hotmail.org,6m51(eH^#P
+13,A01,Apolonia,Chmielewska,Orzeszkowej 9,Gliwice,86-126,594725465,adipiscing.non.luctus@onet.net,^pELJaV80*
+14,A01,Nataniel,Wolski,Kasztanowa 4,Tychy,66-101,888355286,vivamus.nibh@onet.org,9(@LD2wo#8
+15,A05,Eryk,Ziółkowski,Kadetów 13,Bytom,86-520,243527316,dictum.ultricies@o2.pl,7*(65xm)*8
+16,A01,Oleksii,Jarosz,Parkowa 1,Zabrze,50-555,608162927,interdum@hotmail.org,5Y(spG@GwU
+17,A01,Irena,Łuczak,Szkolna,Elbląg,36-568,508404748,risus.morbi@o2.net,W8y2fp^c91
+18,A01,Gustaw,Jóźwiak,Jagodowa,Bielsko-Biała,67-035,153609577,nullam@google.com,@2R5Ipug5x
+19,A01,Lucyna,Żak,Parkowa,Suwałki,56-920,718610324,nascetur.ridiculus@outlook.org,pg2%8)wG(t
+20,A01,Wojciech,Wierzbicki,Kosynierów,Legnica,06-775,964446468,sed.pede.nec@outlook.net,A)(m#5P^mG
+21,A01,Yurii,Andrzejewski,Kasztanowa,Jelenia Góra,18-535,422604283,maecenas@hotmail.pl,WzR7A3o7%c
+22,A01,Wawrzyniec,Michalski,Szkolna,Ostrołęka,59-798,198645387,rhoncus.donec@onet.pl,5DD8mU18!R
+23,A01,Mykhailo,Borowski,Rolna,Kielce,30-333,885385637,sed.consequat.auctor@google.pl,fz1RTvW9$e
+24,A01,Hubert,Woźniak,Rzemieniewicka,Żory,83-432,432818423,tortor.nibh@o2.com,g$Wc%3H7Sk
+25,A01,Walentyna,Stankiewicz,Urocza,Przemyśl,59-448,815301178,enim.etiam.gravida@onet.org,UkFGG)!r38
+26,A01,Daria,Tomaszewska,Sosnowa,Gdynia,61-428,261416833,libero@google.com,5sKZj*9@(o
+27,A05,Gabriela,Kalinowska,Miarki,Legnica,59-110,618868220,metus.aenean.sed@onet.com,ceq9l2U7p2
+28,A06,Teofila,Szczepańska,Ogrodowa,1213,36-959,229246618,lorem.donec@google.pl,Fa#914pMgJ
+29,A05,Rafał,Maciejewski,Ludowa,Świnoujście,79-204,741350896,massa.quisque@hotmail.com,U351Z$)X(7
+30,A01,Robert,Orłowski,Tulipanowa,Tarnów,06-258,867043156,ipsum.primis@onet.pl,UP*aGl^!p0
+31,A01,Feliksa,Krupa,Hebanowa,Skierniewice,54-890,735634711,auctor.vitae@o2.net,4c39k!F#E5
+32,A06,Otylia,Sowa,Kujawska,21341,48-914,745347825,nisl.maecenas@o2.net,61PJz@@R$1
+33,A05,Piotr,Błaszczyk,Szkolna,Biała Podlaska,47-035,989321054,feugiat@outlook.net,t1*4)si4(a
+34,A02,Władysława,Błaszczyk,Sosnowa,Chorzów,28-688,59629171,netus.et.malesuada@onet.pl,50%Z8Q8*k)
+35,A01,Czesława,Bednarczyk,Kilińskiego,Zabrze,65-036,469874156,augue.eu@google.org,LnJur2i#0t
+36,A01,Dorian,Szymański,Młynarska,Opole,55-888,103777247,elit.a@onet.net,QISsW!3A!2
+37,A02,Elżbieta,Kamińska,Szkolna,Legnica,89-247,26041,ridiculus.mus@o2.org,Fd$ju7E(hl
+38,A02,Marta,Marek,Ametystowa,Toruń,03-760,36668296,semper@outlook.pl,Rd77ots(5&
+39,A02,Paweł,Szymczak,Sosnowa,Skierniewice,87-290,16133881,elementum.sem@hotmail.net,FJ!06uNJ8d
+40,A05,Feliksa,Wróblewska,Leśna,Żory,86-344,274995321,duis.at@onet.org,5fBp5rO0Tq
+41,A02,Kornelia,Nowak,Tulipanowa,Suwałki,50-119,65225639,mollis@o2.net,bt@%#P$Ofa1
+42,A03,Feliks,Krupa,Piesza,Elbląg,66-424,867488055,vulputate.nisi,(6Lm33S96)
+43,A01,Adelajda,Wróblewska,Sandaczowa,Gorzów Wielkopolski,59-084,847391060,congue.elit@google.pl,c#!!8ja0FF
+44,A03,Ksawery,Romanowski,Sienkiewicza,Mysłowice,21-470,143784554,non,W&Z)s^73F#
+45,A01,Gabriela,Kurek,Krzywoń,Płock,31-342,412443971,at.velit.pellentesque@hotmail.net,J(n#9q7dqV
+46,A03,Zygfryd,Krawczyk,Kasztanowa,Wrocław,17-99,868706441,at.egestas,e70t#1J1)F
+47,A01,Adam,Świątek,Akacjowa,Rzeszów,16-658,664414824,libero.integer@hotmail.pl,d4%Gsnx%M#
+48,A05,Eliza,Czajkowska,Piwna,Biała Podlaska,16-923,133291216,sagittis@outlook.org,41%3K^PLX@
+49,A04,Nataliia,Urbańska,Słowiańska,Częstochowa,76-6,446868166,elementum.lorem@o2.net,iw8pF007N$
+50,A04,Franciszka,Malinowska,Słowackiego,Tarnów,35-17,113483896,urna@google.com,)tH*&7OQ1B
