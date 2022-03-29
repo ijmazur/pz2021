@@ -3,9 +3,12 @@ import IconButton from '@mui/material/IconButton';
 import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import Register from './pages/Register';
+import Register from './components/Register';
+import Login from './components/Login';
+import User from './components/user/User';
+import RestaurantView from './components/restaurant/RestaurantView';
 import { Routes, Route, BrowserRouter as Router, Navigate } from 'react-router-dom';
-import Login from './pages/Login';
+
 
 
 
@@ -51,6 +54,8 @@ export default function ToggleColorMode() {
             <Route path="/" element={<Navigate replace to='/login' />} />
             <Route exact path='/register' element={<Register button={<ThemeButton />}/>}/>
             <Route path="/login" element={<Login button={<ThemeButton />}/>} />
+            <Route path="/user" element={<User button={<ThemeButton />}/>} />
+            <Route path="/restaurantview" element={<RestaurantView button={<ThemeButton />}/>} />
           </Routes>
         </Router >
 
