@@ -44,6 +44,7 @@ export default function SignUp(props) {
 
   const [phoneNumber, setPhoneNumber] = React.useState("");
   const [postalCode, setPostalCode] = React.useState("");
+  const [city, setCity] = React.useState("");
   
   const startValid = { isValid: "no", errorText: "", focused: false }
   const [nameValidation, setNameValidation] = React.useState(startValid);
@@ -139,7 +140,7 @@ export default function SignUp(props) {
     const onlyNums = event.replace(/[^0-9]/g, '');
     if (onlyNums.length === 0) 
     {
-      emptyValidation(event, setPostalCodeValidation, prev);
+      emptyValidation(onlyNums, setPostalCodeValidation, prev);
       setPostalCode(onlyNums);
     }
     else if (onlyNums.length < 5) 
@@ -166,6 +167,25 @@ export default function SignUp(props) {
       setPostalCode(number);
     }
   }
+
+
+  const handleCity = (event, prev) => {
+    const onlyLetters = event.replace(/[^a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/g, '');
+    setCity(onlyLetters);
+    if (onlyLetters == "") 
+    {
+      emptyValidation(onlyLetters, setCityValidation, prev);
+    }
+     else {
+      setCityValidation(prev => ( {
+          ...cityValidation,
+          isValid: true,
+          errorText: "",
+          focused: true
+        }));
+      }
+    }
+
 
   const handleEmail = (event, prev) => {
     var email = event;
@@ -347,11 +367,12 @@ export default function SignUp(props) {
               </Grid>
               <Grid item xs={12} sm={7}>
                 <TextField
-                  onChange={(event) => emptyValidation(event.target.value, setCityValidation, cityValidation)}
+                  onChange={(event) => handleCity(event.target.value, setCityValidation, cityValidation)}
                   error={!cityValidation.isValid}
                   helperText={cityValidation.errorText}
                   focused={cityValidation.focused}
                   color="success"
+                  value={city}
                   id="city"
                   label="Miejscowość"
                   name="city"
@@ -470,12 +491,12 @@ export default function SignUp(props) {
                   focused={repeatedPasswordValidation.focused}
                   disabled={!passwordValue}
                   color="success"
-                  name="password"
+                  name="repeatedPassword"
                   label="Powtórz hasło"
                   type={passwordInput}
                   value={repeateDpasswordValue}
-                  id="password"
-                  autoComplete="new-password"
+                  id="repeatedPassword"
+                  autoComplete="repeated-password"
                   fullWidth
                 />
               </Grid>
