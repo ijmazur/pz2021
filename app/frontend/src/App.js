@@ -8,25 +8,28 @@ import Login from './components/Login';
 import User from './components/user/User';
 import RestaurantView from './components/restaurant/RestaurantView';
 import { Routes, Route, BrowserRouter as Router, Navigate } from 'react-router-dom';
+import Cookies from "js-cookie";
 
 
 
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => { } });
+Cookies.get("mode",) === 'dark' ? Cookies.set("mode", 'dark') :  Cookies.set("mode", 'light')
 
 
 function ThemeButton() {
   const theme = useTheme();
   const colorMode = React.useContext(ColorModeContext);
+  Cookies.set("mode", theme.palette.mode)
   return (
     <IconButton sx={{ ml: 0 }} onClick={colorMode.toggleColorMode} color="inherit">
-      {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+        {Cookies.get("mode") === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
     </IconButton>
   );
 }
 
 export default function ToggleColorMode() {
-  const [mode, setMode] = React.useState('light');
+  const [mode, setMode] = React.useState(Cookies.get("mode"));
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
@@ -34,16 +37,18 @@ export default function ToggleColorMode() {
       },
     }),
     [],
+    
   );
-
   const theme = React.useMemo(
     () =>
       createTheme({
         palette: {
           mode,
         },
-      }),
+      }
+      ),
     [mode],
+
   );
 
   return (
