@@ -29,7 +29,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '0.0.0.0',
     '127.0.0.1',
-    'test-api-zamow-jedzenie.herokuapp.com'
+    'test-api-zamow-jedzenie.herokuapp.com',
+    'api-zamow-jedzenie.herokuapp.com',
 ]
 
 
