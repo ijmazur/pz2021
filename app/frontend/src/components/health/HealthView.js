@@ -1,8 +1,9 @@
+import './HealthView.css'
 
 export const HealthView = () => {
   return (
       <div>
-          <p>i am healthy</p>
+          <p>I am healthy!</p>
       </div>
   )
 }
