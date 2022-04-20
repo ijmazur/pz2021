@@ -1,0 +1,29 @@
+name: Deploy frontend to prod server
+
+on:
+  push:
+    tags:        
+      - '*' 
+
+jobs:
+  deploy_front_to_test:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: npm install
+        run: |
+          cd app/frontend
+          npm install
+      - name: deploy
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API}}
+          heroku_app_name: 'zamow-jedzenie'
+          heroku_email: 'adam.b.checinski@gmail.com'
+          appdir: 'app/frontend'
+          healthcheck: "https://zamow-jedzenie.herokuapp.com"
+          delay: 5
+          rollbackonhealthcheckfailed: true
