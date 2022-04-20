@@ -9,6 +9,7 @@ import User from './components/user/User';
 import RestaurantView from './components/restaurant/RestaurantView';
 import { Routes, Route, BrowserRouter as Router, Navigate } from 'react-router-dom';
 import Cookies from "js-cookie";
+import HealthView from "./components/health/HealthView";
 
 
 
@@ -61,6 +62,7 @@ export default function ToggleColorMode() {
             <Route path="/login" element={<Login button={<ThemeButton />}/>} />
             <Route path="/user" element={<User button={<ThemeButton />}/>} />
             <Route path="/restaurantview" element={<RestaurantView button={<ThemeButton />}/>} />
+            <Route path="/health" element={<HealthView/>} />
           </Routes>
         </Router >
 
