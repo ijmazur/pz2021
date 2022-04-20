@@ -1,6 +1,7 @@
 name: Deploy frontend to prod server
 
 on:
+  workflow_dispatch:
   push:
     tags:        
       - '*' 
