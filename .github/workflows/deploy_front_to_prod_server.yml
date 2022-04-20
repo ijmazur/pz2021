@@ -24,6 +24,6 @@ jobs:
           heroku_app_name: 'zamow-jedzenie'
           heroku_email: 'adam.b.checinski@gmail.com'
           appdir: 'app/frontend'
-          healthcheck: "https://zamow-jedzenie.herokuapp.com"
-          delay: 5
-          rollbackonhealthcheckfailed: true
+          # healthcheck: "https://zamow-jedzenie.herokuapp.com"
+          # delay: 5
+          # rollbackonhealthcheckfailed: true
