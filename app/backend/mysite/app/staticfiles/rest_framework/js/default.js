@@ -1,7 +1,7 @@
 $(document).ready(function() {
   // JSON highlighting.
   prettyPrint();
-
+	//test
   // Bootstrap tooltips.
   $('.js-tooltip').tooltip({
     delay: 1000,
