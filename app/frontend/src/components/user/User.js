@@ -3,7 +3,7 @@ import './User.css';
 import { useEffect, useState } from 'react'
 import authService from '../../services/auth.service';
 import UserData from '../UserData';
-
+import Footerv2 from '../Footerv2';
 import { styled, useTheme, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -241,7 +241,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
             <Grid align="center">
             <TitlebarImageList  />
             </Grid>
-            
+            <Footerv2 />
         </Main>
         <Drawer
           sx={{
