@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Footer from './Footer';
 import './Login.css';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -21,21 +22,6 @@ import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
 import RepeatIcon from '@mui/icons-material/Repeat';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-
-
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://zamow-jedzenie.pl/">
-        zamow-jedzenie.pl
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 
 export default function SignUp(props) {
@@ -525,7 +511,7 @@ export default function SignUp(props) {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
+        <Footer sx={{ mt: 5 }} />
       </Container>
   )
 }

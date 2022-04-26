@@ -20,19 +20,7 @@ import './Login.css';
 import authService from '../services/auth.service';
 import { useLocation } from 'react-router';
 import { useNavigate } from 'react-router-dom';
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://zamow-jedzenie.pl/">
-        zamow-jedzenie.pl
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import Footer from './Footer';
 
 const theme = createTheme();
 
@@ -206,7 +194,7 @@ export default function SignIn(props) {
           </Grid>
         </Box>
       </Box>
-      <Copyright sx={{ mt: 8, mb: 4 }} />
+      <Footer sx={{ mt: 8, mb: 4 }} />
     </Container>
   );
 }
