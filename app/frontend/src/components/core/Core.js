@@ -1,6 +1,7 @@
 import React from 'react'
-import './User.css';
+import './Core.css';
 import { useEffect, useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom';
 import authService from '../../services/auth.service';
 import UserData from '../UserData';
 import Footerv2 from '../Footerv2';
@@ -75,35 +76,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-function TitlebarImageList() {
-  return (
-    <ImageList sx={{ width: 'auto', height: 'auto' }} cols={5} rowHeight='auto'>
-      {itemData.map((item) => (
-        <ImageListItem key={item.img}>
-          <img
-            src={`${item.img}?w=248&fit=crop&auto=format`}
-            srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-            alt={item.title}
-            loading="lazy"
-          />
-          <ImageListItemBar
-            title={item.title}
-            subtitle={item.author}
-            actionIcon={
-              <IconButton
-                sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-                aria-label={`info about ${item.title}`}
-              >
-                <RestaurantIcon />
-              </IconButton>
-            }
-          />
-        </ImageListItem>
-      ))}
-    </ImageList>
-  );
-}
-
 const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
   height: '100%',
@@ -113,34 +85,6 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
 }));
-
-const itemData = [
-  {
-    img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
-    title: 'Breakfast',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
-    title: 'Burger',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
-    title: 'Coffee',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
-    title: 'Mushrooms',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
-    title: 'Tomato basil',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
-    title: 'SeaFood',
-  },
-];
-
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
@@ -177,7 +121,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
       marginRight: drawerWidth,
     }),
   }));
-  
+
   const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
@@ -190,6 +134,21 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   function PersistentDrawerRight(props) {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+
+    const [userData, setUserData] = useState();
+
+    const navigate = useNavigate();
+    const goToLogin = (goToPage) => {
+      navigate('/', { state: { data: goToPage } });
+    }
+
+  useEffect(() => {
+    authService.getCurrentUser().then(
+      (data) => {
+        setUserData(data);
+      }
+    )
+  }, [])
   
     const handleDrawerOpen = () => {
       setOpen(true);
@@ -205,7 +164,9 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
         <AppBar position="fixed" open={open}>
           <Toolbar>
           {props.button}
-          <img className='image' src={require("../../images/zjlogo.png")} width="150" height="75" alt="zamów jedzenie"/>
+          <a href="/main">
+            <img className='image' src={require("../../images/zjlogo.png")} width="150" height="75" alt="zamów jedzenie"/>
+          </a>
             <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div">
             </Typography>
             <Search>
@@ -235,13 +196,10 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
         </AppBar>
         <Main open={open}>
           <DrawerHeader />
-            <Typography variant="h4" noWrap sx={{ flexGrow: 1 }} component="div" align="center"  >
-            <RestaurantMenuIcon fontSize='medium' /> Restauracje
-            </Typography>
-            <Grid align="center">
-            <TitlebarImageList  />
-            </Grid>
-            <Footerv2 />
+          <Typography variant="h4" noWrap sx={{ flexGrow: 1 }} component="div" align="center"  >
+            <RestaurantMenuIcon fontSize='medium' /> {props.text}
+          </Typography>
+          {/* <Footerv2 /> */}
         </Main>
         <Drawer
           sx={{
@@ -259,32 +217,32 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </IconButton>
-            Karol
+            <UserData userData={userData} />
           </DrawerHeader>
           <List>
           <Divider />
-              <ListItem button key={'Moje dane'}>
+              <ListItem button key={'Moje dane'} component={Link} to="/profile">
                 <ListItemIcon>
                <PersonIcon />
                 </ListItemIcon>
                 <ListItemText primary={'Moje dane'} />
               </ListItem>
               <Divider />
-              <ListItem button key={'Restauracje'}>
+              <ListItem button key={'Restauracje'} component={Link} to="/restaurantview">
                 <ListItemIcon>
                <RestaurantMenuIcon />
                 </ListItemIcon>
                 <ListItemText primary={'Restauracje'} />
               </ListItem>
               <Divider />
-              <ListItem button key={'Historia'}>
+              <ListItem button key={'Historia'} component={Link} to="/history">
                 <ListItemIcon>
                <AccessTimeFilledIcon />
                 </ListItemIcon>
                 <ListItemText primary={'Historia'} />
               </ListItem>
               <Divider />
-              <ListItem button key={'Koszyk'}>
+              <ListItem button key={'Koszyk'} component={Link} to="/payment">
                 <ListItemIcon>
                <ShoppingCartIcon />
                 </ListItemIcon>
@@ -294,6 +252,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
               <Button
               fullWidth
               variant="contained"
+              onClick={() => goToLogin('')}
             >
                <LogoutIcon></LogoutIcon>
               Wyloguj się
@@ -307,7 +266,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
 
 
 
-export const User = (props) => {
+export const Core = (props) => {
     const [userData, setUserData] = useState();
 
     useEffect(() => {
@@ -326,10 +285,10 @@ export const User = (props) => {
         //     </div>
         // </div>
         <>
-        <PersistentDrawerRight button={props.button}/>
+        <PersistentDrawerRight button={props.button} text={props.text}/>
         </>
 
     )
 }
 
-export default User;
+export default Core;
