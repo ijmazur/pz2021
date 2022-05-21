@@ -1,7 +1,8 @@
 import axios from 'axios';
 import authHeader from './auth-header';
 
-const API_AUTH_URL = 'https://test-api-zamow-jedzenie.herokuapp.com/auth/login/';
+const BASE_API_URL = process.env.REACT_APP_BASE_URL
+const API_AUTH_URL = BASE_API_URL + 'auth/login/';
 
 const defaultConfig = {
     headers: {
