@@ -9,3 +9,5 @@ services:
     ports:
       - 3000:3000
     container_name: pz2021-front-dev
+    environment:
+      - REACT_APP_BASE_URL=https://test-api-zamow-jedzenie.herokuapp.com/
