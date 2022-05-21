@@ -19,6 +19,7 @@ jobs:
       - name: npm install
         run: |
           cd app/frontend
+          rm .env
           npm install
       - name: deploy
         uses: akhileshns/heroku-deploy@v3.12.12
