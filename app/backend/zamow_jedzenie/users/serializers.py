@@ -1,5 +1,30 @@
 from rest_framework import serializers
 from users import models
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    """Customizes JWT default Serializer to add more information about user"""
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+        token['id'] = user.id
+        token['email'] = user.email
+        token['is_superuser'] = user.is_superuser
+        token['is_staff'] = user.is_staff
+
+        return token
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        data['id'] = self.user.id
+        data['email'] = self.user.email
+        data['firstName'] = self.user.firstName
+        data['lastName'] = self.user.lastName
+        data['street'] = self.user.street
+        data['city'] = self.user.city
+        data['postalCode'] = self.user.postalCode
+        data['phoneNumber'] = self.user.phoneNumber
+        data['newsletter'] = self.user.newsletter
+        return data
 
 class HelloSerializer(serializers.Serializer):
     """Serializes a name field for testing our APIView"""
