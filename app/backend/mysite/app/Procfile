@@ -1,2 +1,0 @@
-web: gunicorn medium.wsgi
-release: python manage.py migrate
