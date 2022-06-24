@@ -19,7 +19,7 @@ class UserProfileRegisterViewSet(viewsets.ModelViewSet):
 class UserLoginApiView(ObtainAuthToken):
     """Handle creating user authentication tokens"""
     renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
-    
+
 from users import serializers
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,

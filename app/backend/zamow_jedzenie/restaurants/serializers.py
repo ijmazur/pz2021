@@ -102,3 +102,25 @@ class OrderSerializer(serializers.ModelSerializer):
             items=validated_data['items']
         )
         return order
+
+
+class UsersOrdersSerializer(serializers.ModelSerializer):
+    """Serializes a restaurant object"""
+    orders = OrderSerializer(many=True, read_only=True)
+    class Meta:
+        model = models.UserProfile
+        fields = ('id', 'orders')
+
+class RestaurantsOrdersSerializer(serializers.ModelSerializer):
+    """Serializes a restaurant object"""
+    orders = OrderSerializer(many=True, read_only=True)
+    class Meta:
+        model = models.Restaurant
+        fields = ('id', 'orders')
+
+class RestaurantsRateSerializer(serializers.ModelSerializer):
+    """Serializes a restaurant object"""
+    rate = serializers.DecimalField(max_digits=3, decimal_places=2)
+    class Meta:
+        model = models.Restaurant
+        fields = ('id', 'rate')
