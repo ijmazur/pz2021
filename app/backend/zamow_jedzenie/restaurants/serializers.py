@@ -5,10 +5,6 @@ from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import BaseUserManager
 
 
-
-
-
-
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Category
@@ -89,3 +85,42 @@ class RestaurantsProductsSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Restaurant
         fields = ('name', 'products')
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    """Serializes an Order object"""
+    items = ProductsSerializer(many=True, read_only=True)
+    class Meta:
+        model = models.Order
+        fields = ('userId', 'restaurantId', 'status', 'items')
+
+    def create(self, validated_data):
+        order = models.Order.objects.create_user(
+            userId=validated_data['userId'],
+            restaurantId=validated_data['restaurantId'],
+            status=validated_data['status'],
+            items=validated_data['items']
+        )
+        return order
+
+
+class UsersOrdersSerializer(serializers.ModelSerializer):
+    """Serializes a restaurant object"""
+    orders = OrderSerializer(many=True, read_only=True)
+    class Meta:
+        model = models.UserProfile
+        fields = ('id', 'orders')
+
+class RestaurantsOrdersSerializer(serializers.ModelSerializer):
+    """Serializes a restaurant object"""
+    orders = OrderSerializer(many=True, read_only=True)
+    class Meta:
+        model = models.Restaurant
+        fields = ('id', 'orders')
+
+class RestaurantsRateSerializer(serializers.ModelSerializer):
+    """Serializes a restaurant object"""
+    rate = serializers.DecimalField(max_digits=3, decimal_places=2)
+    class Meta:
+        model = models.Restaurant
+        fields = ('id', 'rate')
