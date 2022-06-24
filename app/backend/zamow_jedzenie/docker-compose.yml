@@ -7,7 +7,11 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-
+    healthcheck:
+        test: ["CMD-SHELL", "pg_isready"]
+        interval: 10s
+        timeout: 5s
+        retries: 5
   web:
     build: .
     command: >
@@ -24,4 +28,5 @@ services:
       - DATABASE_HOST=db
       - DATABASE_PORT=5432
     depends_on:
-      - db
+        db:
+            condition: service_healthy
