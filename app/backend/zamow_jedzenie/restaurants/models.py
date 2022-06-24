@@ -125,3 +125,23 @@ class Restaurant(models.Model):
     products = models.ManyToManyField(Product)
 
     objects = RestaurantManager()
+
+
+class OrderManager(BaseUserManager):
+    """Manager for Order"""
+
+    def create_user(self, name):
+        order = self.model(userId=userId, restaurantId=restaurantId, status=status, items=items)
+        order.save(using=self._db)
+
+        return order
+
+
+class Order(models.Model):
+    """Database model for order"""
+    userId = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    restaurantId = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    status = models.CharField(max_length=255)
+    items = models.ManyToManyField(Product)
+
+    objects = OrderManager()

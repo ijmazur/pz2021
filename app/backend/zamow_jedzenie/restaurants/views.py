@@ -41,6 +41,11 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = models.Product.objects.all()
 
 class RestaurantsProductsViewSet(viewsets.ModelViewSet):
-    """Handle creating, creating and updating Product"""
+    """Handle creating, creating and updating restaurant products"""
     serializer_class = serializers.RestaurantsProductsSerializer
     queryset = models.Restaurant.objects.all()
+
+class OrderViewSet(viewsets.ModelViewSet):
+    """Handle creating, creating and updating orders"""
+    serializer_class = serializers.OrderSerializer
+    queryset = models.Order.objects.all()

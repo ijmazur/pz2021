@@ -12,9 +12,7 @@ router.register('categories', views.CategoryViewSet, basename='categories')
 router.register('opening', views.OpeningHoursViewSet, basename='opening')
 router.register('products', views.ProductViewSet, basename='products')
 router.register('restaurants/products', views.RestaurantsProductsViewSet, basename='products2')
-
-
-
+router.register('orders', views.OrderViewSet, basename='orders')
 
 
 urlpatterns = [

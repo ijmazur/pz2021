@@ -5,10 +5,6 @@ from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import BaseUserManager
 
 
-
-
-
-
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Category
@@ -89,3 +85,20 @@ class RestaurantsProductsSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Restaurant
         fields = ('name', 'products')
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    """Serializes an Order object"""
+    items = ProductsSerializer(many=True, read_only=True)
+    class Meta:
+        model = models.Order
+        fields = ('userId', 'restaurantId', 'status', 'items')
+
+    def create(self, validated_data):
+        order = models.Order.objects.create_user(
+            userId=validated_data['userId'],
+            restaurantId=validated_data['restaurantId'],
+            status=validated_data['status'],
+            items=validated_data['items']
+        )
+        return order
