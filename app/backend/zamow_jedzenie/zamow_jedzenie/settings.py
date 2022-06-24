@@ -27,6 +27,7 @@ SECRET_KEY = 'django-insecure-(*ovo4fsij2u+pw==pa$k=7mhkj$v$a-@t6$b!wp-44e*@&lah
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    'localhost',
     '0.0.0.0',
     '127.0.0.1',
     'test-api-zamow-jedzenie.herokuapp.com',
