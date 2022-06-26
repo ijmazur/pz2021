@@ -33,7 +33,10 @@ export const Profile = (props, user) => {
     const [city, setCity] = useState('');
     const [postalCode, setPostalCode] = useState('');
     const [phone, setPhone] = useState('');
-
+    const formSubmit = (event) => {
+        event.preventDefault()
+        console.log('dupa')
+    }
     // useEffect(() => {
     //     if(!userInfo){
     //         history.push("/");
@@ -114,7 +117,7 @@ export const Profile = (props, user) => {
                                 value={phone}
                                 onChange={(e) => setPhone(e.target.value)}/>
                         </FormGroup>
-                        <Button type="submit" varient="contained">Update</Button>
+                        <Button type="submit" varient="contained" onSubmit={formSubmit}>Update</Button>
                     </Form>
                 </Grid>
             </Container>    

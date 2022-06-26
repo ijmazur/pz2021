@@ -143,11 +143,8 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
     }
 
   useEffect(() => {
-    authService.getCurrentUser().then(
-      (data) => {
-        setUserData(data);
-      }
-    )
+        setUserData(authService.getCurrentUser())
+
   }, [])
   
     const handleDrawerOpen = () => {
@@ -268,13 +265,10 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
 
 export const Core = (props) => {
     const [userData, setUserData] = useState();
-
+    console.log("get curr user")
+    console.log(authService.getCurrentUser())
     useEffect(() => {
-        authService.getCurrentUser().then(
-            (data) => {
-                setUserData(data);
-            }
-        )
+        setUserData(authService.getCurrentUser())
     }, [])
 
     return (

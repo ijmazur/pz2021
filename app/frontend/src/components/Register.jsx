@@ -22,6 +22,7 @@ import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
 import RepeatIcon from '@mui/icons-material/Repeat';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import authService from "../services/auth.service";
 
 
 export default function SignUp(props) {
@@ -52,19 +53,21 @@ export default function SignUp(props) {
 
 
   const handleSubmit = (event) => {
+      event.preventDefault();
     const data = new FormData(event.currentTarget);
     const userData = {
-      firstName: data.get('firstName'),
-      lastName: data.get('lastName'),
-      street: data.get('street'),
-      city: data.get('city'),
-      postalCode: data.get('postalCode'),
-      phoneNumber: data.get('phoneNumber'),
-      email: data.get('email'),
-      password: data.set('password', ""),
-      CheckBox: CheckBox.checked,
-
+        email: data.get('email'),
+        firstName: data.get('firstName'),
+        lastName: data.get('lastName'),
+        street: data.get('street'),
+        city: data.get('city'),
+        postalCode: data.get('postalCode'),
+        phoneNumber: data.get('phoneNumber'),
+        newsletter: CheckBox.checked ? CheckBox.checked : false,
+        password:data.get('password'),
     }
+    console.log(userData)
+
     if (nameValidation.focused && lastNameValidation.focused &&  streetValidation.focused &&
        cityValidation.focused && postalCodeValidation.focused && phoneNumberValidation.focused && 
        emailValidation.focused && passwordValidation.focused && repeatedPasswordValidation.focused )
@@ -83,6 +86,7 @@ export default function SignUp(props) {
          handlePassword(data.get('password'), passwordValidation)
          event.preventDefault();
         }
+    authService.register(userData)
   
   };
 

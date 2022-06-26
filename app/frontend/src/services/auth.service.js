@@ -2,7 +2,6 @@ import axios from 'axios';
 import authHeader from './auth-header';
 
 const BASE_API_URL = process.env.REACT_APP_BASE_URL
-const API_AUTH_URL = BASE_API_URL + 'auth/login/';
 
 const defaultConfig = {
     headers: {
@@ -12,33 +11,28 @@ const defaultConfig = {
 }
 
 class AuthService {
-    login(username, password, type) {
+    login(email, password) {
         return axios
-            .post(API_AUTH_URL, {
-                username,
+            .post(BASE_API_URL + 'auth/login/', {
+                email,
                 password
-            }, defaultConfig)
+            })
             .then(response => {
                 if (response.data.access) {
-                    localStorage.setItem('loggedInAs', type);
-                    localStorage.setItem('user', response.data.access);
+                    localStorage.setItem("user", JSON.stringify(response.data));
                 }
                 return response.data;
             });
     }
-
     logout() {
-        localStorage.removeItem('user');
+        localStorage.removeItem("user");
+    }
+    register(data) {
+        return axios.post(BASE_API_URL + 'auth/register/', data);
     }
 
     getCurrentUser() {
-        const config = JSON.parse(JSON.stringify(defaultConfig));
-        config.headers = {...config.headers, ...authHeader() }
-        return axios.get(API_AUTH_URL + 'user', config).then(
-            (response) => {
-                return response.data
-            }
-        )
+        return JSON.parse(localStorage.getItem('user'))
     }
 }
 

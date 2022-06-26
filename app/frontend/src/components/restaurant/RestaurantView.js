@@ -49,11 +49,7 @@ export const RestaurantView = (props) => {
     const [userData, setUserData] = useState();
 
     useEffect(() => {
-        authService.getCurrentUser().then(
-            (data) => {
-                setUserData(data);
-            }
-        )
+        setUserData(authService.getCurrentUser())
     }, [])
 
     const DrawerHeader = styled('div')(({ theme }) => ({
