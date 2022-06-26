@@ -3,9 +3,9 @@ services:
     image: pz2021-front-dev
     build:
       context: .
-      dockerfile: dev.Dockerfile
+      dockerfile: Dockerfile
     volumes:
-      - ./:/usr/src/app
+      - .:/app
     ports:
       - 3000:3000
     container_name: pz2021-front-dev
