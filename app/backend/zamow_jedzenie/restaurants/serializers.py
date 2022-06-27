@@ -54,6 +54,7 @@ class RestaurantSerializer(serializers.ModelSerializer):
     """Serializes a restaurant object"""
     products = ProductsSerializer(many=True, read_only=True)
     categories = CategorySerializer(many=True, read_only=True)
+    hours = OpeningHoursSerializer(many=True, read_only=True)
     class Meta:
         model = models.Restaurant
         #ownerId name description phoneNumber address image categories ratingCount ratingValue minimalOrderCost deliveryCost hours
