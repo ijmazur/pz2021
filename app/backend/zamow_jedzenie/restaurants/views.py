@@ -45,6 +45,15 @@ class RestaurantsProductsViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.RestaurantsProductsSerializer
     queryset = models.Restaurant.objects.all()
 
+class RestaurantsProductsView(APIView):
+    """Handle viewing all restaurant's orders"""
+    def get(self, request, restaurant_id):
+        try:
+            products = models.Product.objects.filter(restaurantId__id=restaurant_id)
+        except models.Restaurant.DoesNotExist:
+            raise Http404
+        serializer = serializers.ProductsSerializer(products, many=True)
+        return Response(serializer.data)
 
 class OrderViewSet(viewsets.ModelViewSet):
     """Handle creating and updating orders"""
@@ -75,6 +84,29 @@ class RestaurantsOrdersView(APIView):
             raise Http404
         serializer = serializers.OrderSerializer(orders, many=True)
         return Response(serializer.data)
+
+
+class UsersOrdersView(APIView):
+    """Handle viewing all users's orders"""
+    def get(self, request, user_id):
+        try:
+            orders = models.Order.objects.filter(userId__id=user_id)
+        except models.UserProfile.DoesNotExist:
+            raise Http404
+        serializer = serializers.OrderSerializer(orders, many=True)
+        return Response(serializer.data)
+
+
+class UsersRestaurantsView(APIView):
+    """Handle viewing all users's orders"""
+    def get(self, request, user_id):
+        try:
+            restaurant = models.Restaurant.objects.filter(ownerId__id=user_id)
+        except models.UserProfile.DoesNotExist:
+            raise Http404
+        serializer = serializers.RestaurantSerializer(restaurant, many=True)
+        return Response(serializer.data)
+
 
 class RestaurantsRateViewSet(viewsets.ModelViewSet):
     """Handle creating and updating resta orders"""

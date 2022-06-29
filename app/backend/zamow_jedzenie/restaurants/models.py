@@ -109,7 +109,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=5, decimal_places=2)
     image = models.CharField(max_length=255)
     categories = models.ForeignKey('Category', on_delete=models.CASCADE, default='1')
-
+    restaurantId = models.ForeignKey('Restaurant', on_delete=models.CASCADE, default='1')
 
 
     objects = ProductManager()
@@ -127,7 +127,6 @@ class Restaurant(models.Model):
     ratingValue = models.DecimalField(max_digits=3, decimal_places=2)
     minimalOrderCost = models.DecimalField(max_digits=10, decimal_places=2)
     deliveryCost = models.DecimalField(max_digits=4, decimal_places=2)
-    items = models.ManyToManyField(Product, related_name='products')
 
     objects = RestaurantManager()
 
