@@ -14,92 +14,158 @@ import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import IconButton from '@mui/material/IconButton';
+import axios from 'axios';
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+import StarIcon from '@mui/icons-material/Star';
+import Button from '@mui/material/Button';
+
+
+
+
+function starRating(value, count, name) {
+
+
+  return (
+    <Box
+      sx={{
+        width: 500,
+        display: 'flex',
+      }}
+    >
+      <Rating
+        value={value}
+        readOnly
+        precision={0.1}
+        emptyIcon={<><StarIcon style={{ opacity: 0.55 }} fontSize="inherit" /></>}
+      />
+      <>({count})</>
+    </Box>
+  );
+}
+
+
+
+
 
 export const RestaurantView = (props) => {
 
-    function TitlebarImageList() {
-        return (
-          <ImageList sx={{ width: 'auto', height: 'auto' }} cols={5} rowHeight='auto'>
-            {itemData.map((item) => (
-              <ImageListItem key={item.img}>
-                <img
-                  src={`${item.img}?w=248&fit=crop&auto=format`}
-                  srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                  alt={item.title}
-                  loading="lazy"
-                />
-                <ImageListItemBar
-                  title={item.title}
-                  subtitle={item.author}
-                  actionIcon={
-                    <IconButton
-                      sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-                      aria-label={`info about ${item.title}`}
-                    >
-                      <RestaurantIcon />
-                    </IconButton>
-                  }
-                />
-              </ImageListItem>
-            ))}
-          </ImageList>
-        );
-    }
-
-    const [userData, setUserData] = useState();
-
-    useEffect(() => {
-        setUserData(authService.getCurrentUser())
-    }, [])
-
-    const DrawerHeader = styled('div')(({ theme }) => ({
-        display: 'flex',
-        alignItems: 'center',
-        padding: theme.spacing(0, 1),
-        // necessary for content to be below app bar
-        ...theme.mixins.toolbar,
-        justifyContent: 'flex-start',
-      }));
-
-      const itemData = [
-        {
-          img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
-          title: 'Breakfast',
-        },
-        {
-          img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
-          title: 'Burger',
-        },
-        {
-          img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
-          title: 'Coffee',
-        },
-        {
-          img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
-          title: 'Mushrooms',
-        },
-        {
-          img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
-          title: 'Tomato basil',
-        },
-        {
-          img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
-          title: 'SeaFood',
-        },
-      ];
 
 
+
+
+  const [restaurantItems, setRestaurantItems] = React.useState([]);
+  const [openings, setOpenings] = React.useState([]);
+
+  useEffect(() => {
+    return axios
+      .get('http://127.0.0.1:8000/restaurants/', {})
+      .then(response => {
+        console.log(response.data)
+        setRestaurantItems(response.data)
+
+        var MyDate = new Date();
+        var MyDateString;
+
+
+        MyDateString = ('0' + MyDate.getHours()).slice(-2) + ':'
+          + ('0' + (MyDate.getMinutes())).slice(-2) + ':'
+          + ('0' + (MyDate.getSeconds())).slice(-2);
+        console.log(MyDateString)
+      });
+  }, []);
+
+
+  useEffect(() => {
+    return axios
+      .get('http://127.0.0.1:8000/opening/', {})
+      .then(response => {
+        console.log(response.data)
+        setOpenings(response.data)
+      });
+  }, []);
+
+
+  function FilterOpenings(RestaurantID) {
+    var MyDate = new Date();
+    var filtered = openings.filter(item => item.weekday == MyDate.getDay())
+    var MyDateString;
+    MyDateString = ('0' + MyDate.getHours()).slice(-2) + ':'
+      + ('0' + (MyDate.getMinutes())).slice(-2) + ':'
+      + ('0' + (MyDate.getSeconds())).slice(-2);
+
+    if(MyDateString >= filtered[0].from_hour && MyDateString <= filtered[0].to_hour)
+      return <a style={{ color: "green" }}>OTWARTE</a>
+    else if (filtered[0].from_hour == filtered[0].to_hour)
+      return <a style={{ color: "green" }}>OTWARTE</a>
+    else 
+      return (<a style={{ color: "red" }}>ZAMKNIĘTE</a>)
+
+  }
+
+
+
+
+  function TitlebarImageList() {
     return (
-        <>
-            <Core button={props.button} text={"Restaurant View"} />
-                <Grid align="center">
-                    <TitlebarImageList  />
-                </Grid>
-            <UserData userData={userData} />
-            <Footerv2 />
-            {/* <Footer /> */}
-        </>
-    )
+      <ImageList sx={{ width: 'auto', height: 'auto' }} cols={5} rowHeight='auto'>
+        {itemData.map((item) => (
+          <ImageListItem key={item.image}>
+            <img
+              src={`${item.image}?w=248&fit=crop&auto=format`}
+              srcSet={`${item.image}?w=248&fit=crop&auto=format&dpr=2 2x`}
+              alt={item.name}
+              loading="lazy"
+            />
+            <ImageListItemBar
+              title={starRating(item.ratingValue, item.ratingCount)}
+              actionIcon={
+                <Button size="small"><>zamów</><RestaurantIcon /></Button>
+
+              }
+            />
+
+            <ImageListItemBar
+              title={item.name}
+              subtitle={FilterOpenings(1)}
+              position="top"
+            />
+          </ImageListItem>
+        ))}
+      </ImageList>
+    );
+  }
+
+  const [userData, setUserData] = useState();
+
+  useEffect(() => {
+    setUserData(authService.getCurrentUser())
+  }, [])
+
+  const DrawerHeader = styled('div')(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+    justifyContent: 'flex-start',
+  }));
+
+  const itemData = restaurantItems;
+
+
+
+  return (
+    <>
+      <Core button={props.button} text={"Restaurant View"} />
+      <Grid align="center">
+        <TitlebarImageList />
+      </Grid>
+      <UserData userData={userData} />
+      <Footerv2 />
+      {/* <Footer /> */}
+    </>
+  )
 }
 
 export default RestaurantView;
