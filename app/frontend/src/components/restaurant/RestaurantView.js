@@ -53,13 +53,13 @@ export const RestaurantView = (props) => {
 
 
 
-
+  const BASE_API_URL = process.env.REACT_APP_BASE_URL
   const [restaurantItems, setRestaurantItems] = React.useState([]);
   const [openings, setOpenings] = React.useState([]);
 
   useEffect(() => {
     return axios
-      .get('http://127.0.0.1:8000/restaurants/', {})
+      .get('https://test-api-zamow-jedzenie.herokuapp.com/restaurants/', {})
       .then(response => {
         console.log(response.data)
         setRestaurantItems(response.data)
@@ -67,39 +67,35 @@ export const RestaurantView = (props) => {
         var MyDate = new Date();
         var MyDateString;
 
-
-        MyDateString = ('0' + MyDate.getHours()).slice(-2) + ':'
-          + ('0' + (MyDate.getMinutes())).slice(-2) + ':'
-          + ('0' + (MyDate.getSeconds())).slice(-2);
-        console.log(MyDateString)
       });
   }, []);
 
 
   useEffect(() => {
     return axios
-      .get('http://127.0.0.1:8000/opening/', {})
+      .get('https://test-api-zamow-jedzenie.herokuapp.com/opening/', {})
       .then(response => {
-        console.log(response.data)
         setOpenings(response.data)
       });
   }, []);
 
 
   function FilterOpenings(RestaurantID) {
-    var MyDate = new Date();
-    var filtered = openings.filter(item => item.weekday == MyDate.getDay())
-    var MyDateString;
-    MyDateString = ('0' + MyDate.getHours()).slice(-2) + ':'
-      + ('0' + (MyDate.getMinutes())).slice(-2) + ':'
-      + ('0' + (MyDate.getSeconds())).slice(-2);
+    // var MyDate = new Date();
+    // var filtered = openings.filter(item => item.weekday == MyDate.getDay())
+    // var MyDateString;
+    // MyDateString = ('0' + MyDate.getHours()).slice(-2) + ':'
+    //   + ('0' + (MyDate.getMinutes())).slice(-2) + ':'
+    //   + ('0' + (MyDate.getSeconds())).slice(-2);
 
-    if(MyDateString >= filtered[0].from_hour && MyDateString <= filtered[0].to_hour)
-      return <a style={{ color: "green" }}>OTWARTE</a>
-    else if (filtered[0].from_hour == filtered[0].to_hour)
-      return <a style={{ color: "green" }}>OTWARTE</a>
-    else 
-      return (<a style={{ color: "red" }}>ZAMKNIĘTE</a>)
+    // if(MyDateString >= filtered[0].from_hour && MyDateString <= filtered[0].to_hour)
+    //   return <a style={{ color: "green" }}>OTWARTE</a>
+    // else if (filtered[0].from_hour == filtered[0].to_hour)
+    //   return <a style={{ color: "green" }}>OTWARTE</a>
+    // else 
+    //   return (<a style={{ color: "red" }}>ZAMKNIĘTE</a>)
+
+    return <a style={{ color: "green" }}>OTWARTE</a>
 
   }
 
@@ -109,7 +105,7 @@ export const RestaurantView = (props) => {
   function TitlebarImageList() {
     return (
       <ImageList sx={{ width: 'auto', height: 'auto' }} cols={5} rowHeight='auto'>
-        {itemData.map((item) => (
+        {itemData.slice(1).map((item) => (
           <ImageListItem key={item.image}>
             <img
               src={`${item.image}?w=248&fit=crop&auto=format`}
@@ -152,16 +148,17 @@ export const RestaurantView = (props) => {
   }));
 
   const itemData = restaurantItems;
+  
 
 
 
   return (
     <>
-      <Core button={props.button} text={"Restaurant View"} />
+      <Core button={props.button} text={"Restauracje"} />
       <Grid align="center">
         <TitlebarImageList />
       </Grid>
-      <UserData userData={userData} />
+      {/* <UserData userData={userData} /> */}
       <Footerv2 />
       {/* <Footer /> */}
     </>
