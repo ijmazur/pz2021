@@ -19,7 +19,10 @@ import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
 import Button from '@mui/material/Button';
-
+import { useLocation } from 'react-router';
+import { useNavigate } from 'react-router-dom';
+import { Routes, Route, BrowserRouter as Router, Navigate } from 'react-router-dom';
+import Products from './Products';
 
 
 
@@ -53,10 +56,12 @@ export const RestaurantView = (props) => {
 
 
 
+  const navigate = useNavigate();
   const BASE_API_URL = process.env.REACT_APP_BASE_URL
-  const [restaurantItems, setRestaurantItems] = React.useState([]);
   const [openings, setOpenings] = React.useState([]);
 
+
+  const [restaurantItems, setRestaurantItems] = React.useState([]);
   useEffect(() => {
     return axios
       .get('https://test-api-zamow-jedzenie.herokuapp.com/restaurants/', {})
@@ -104,6 +109,7 @@ export const RestaurantView = (props) => {
 
   function TitlebarImageList() {
     return (
+
       <ImageList sx={{ width: 'auto', height: 'auto' }} cols={5} rowHeight='auto'>
         {itemData.slice(1).map((item) => (
           <ImageListItem key={item.image}>
@@ -113,10 +119,19 @@ export const RestaurantView = (props) => {
               alt={item.name}
               loading="lazy"
             />
+
+
+
+
+            
             <ImageListItemBar
               title={starRating(item.ratingValue, item.ratingCount)}
               actionIcon={
-                <Button size="small"><>zamów</><RestaurantIcon /></Button>
+                <Button size="small" onClick={() => {
+                  navigate("/restaurantview/"+ item.id, {state : {name: item.name}})
+                }} ><>zamów</><RestaurantIcon /></Button>
+
+
 
               }
             />
@@ -148,7 +163,7 @@ export const RestaurantView = (props) => {
   }));
 
   const itemData = restaurantItems;
-  
+
 
 
 
