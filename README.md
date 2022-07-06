@@ -18,7 +18,7 @@ The first thing the user sees is a login page, if they do not have an account, t
 # Restaurants 
 
 The main core of our application, here the user can choose between restaurants from which he whishes to order. 
-![image](https://user-images.githubusercontent.com/11295764/177373191-bdc5b2ec-f1a7-4fc0-93ac-b0d85fe73a72.png)
+![image](https://user-images.githubusercontent.com/11295764/177551472-727805cc-32e0-4ddc-a4fc-03d000d4e810.png)
 
 
 ## Registration & Login
@@ -57,7 +57,7 @@ The app is equipped with both dark and light mode for more demanding users. User
 ![image](https://user-images.githubusercontent.com/11295764/177370338-ce333c8a-a769-4478-8434-d0074eb8dece.png)
 ![image](https://user-images.githubusercontent.com/11295764/177370374-f0c02861-5f1c-494d-a51e-1133c8725202.png)
 ![image](https://user-images.githubusercontent.com/11295764/177370443-0db1c985-6fd6-438a-ad67-7087079eb2ae.png)
-![image](https://user-images.githubusercontent.com/11295764/177373139-65bee2cf-10e1-4ea6-9673-0aa07d68260f.png)
+![image](https://user-images.githubusercontent.com/11295764/177551593-89a2843e-0553-401d-b672-0d3f7c18968d.png)
 
 
 ## JIRA
