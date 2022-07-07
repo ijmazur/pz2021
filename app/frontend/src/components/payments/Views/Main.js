@@ -26,24 +26,15 @@ const Main = () => {
     
     const [stripePromise, setStripePromise] = useState(null)
 
-    useEffect(() => {
-        const retrievePublishableKey = async () => {
-            const publishableKey = await publishableKeyGet()
-            const stripe = loadStripe(publishableKey);
-            setStripePromise(stripe)
-        }
-        retrievePublishableKey()
-    }, [])
+
 
     return <Box component="main" className={classes.boxWrapper}>
         <Container maxWidth="md" className={classes.container}>
             <Paper elevation={5}>
-                {stripePromise
                     ? <Elements stripe={stripePromise}>
                         <CustomizedSteppers />
                     </Elements>
-                    : null
-                }
+
             </Paper>
         </Container>
     </Box>

@@ -168,7 +168,7 @@ const Steppers = () => {
                                             ?
                                             <CircularProgress size={24} />
                                             :
-                                            activeStep === 2 ? 'Zapłać' : 'Dalej'
+                                            activeStep === 2 ? 'Pay' : 'Dalej'
                                     }
                                 </Button>
                             </Grid>
