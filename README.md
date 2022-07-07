@@ -18,7 +18,9 @@ The first thing the user sees is a login page, if they do not have an account, t
 # Restaurants 
 
 The main core of our application, here the user can choose between restaurants from which he whishes to order. 
-![image](https://user-images.githubusercontent.com/11295764/177551472-727805cc-32e0-4ddc-a4fc-03d000d4e810.png)
+![image](https://user-images.githubusercontent.com/11295764/177700332-bd964039-a95a-43e8-8ee2-4c6b82aaaa13.png)
+![image](https://user-images.githubusercontent.com/11295764/177700469-dae279eb-b29c-4528-b5c2-25beb0ccdf74.png)
+![image](https://user-images.githubusercontent.com/11295764/177700535-93b73f4b-e606-4806-81c7-e00295f1dddb.png)
 
 
 ## Registration & Login
@@ -41,6 +43,12 @@ Healthcheck page for our hosting services to check if the website is returing a 
 Users are able to change the details of their accounts. 
 ![image](https://user-images.githubusercontent.com/11295764/177370153-ee1b1a1d-d2cd-48be-a37d-4c864db562a8.png)
 
+## Payments
+
+![image](https://user-images.githubusercontent.com/11295764/177700646-0e384f29-8ab8-47d9-b8a6-927be2cf13a3.png)
+![image](https://user-images.githubusercontent.com/11295764/177700680-da8ca2f7-9991-467e-9afd-31c637ffbff9.png)
+![image](https://user-images.githubusercontent.com/11295764/177700730-fc71e375-0abf-499a-9866-2abf5d46c9aa.png)
+
 
 ## Other
 
@@ -58,6 +66,11 @@ The app is equipped with both dark and light mode for more demanding users. User
 ![image](https://user-images.githubusercontent.com/11295764/177370374-f0c02861-5f1c-494d-a51e-1133c8725202.png)
 ![image](https://user-images.githubusercontent.com/11295764/177370443-0db1c985-6fd6-438a-ad67-7087079eb2ae.png)
 ![image](https://user-images.githubusercontent.com/11295764/177551593-89a2843e-0553-401d-b672-0d3f7c18968d.png)
+![image](https://user-images.githubusercontent.com/11295764/177701354-812b4656-3773-418f-ae96-e4ab3ae4937a.png)
+![image](https://user-images.githubusercontent.com/11295764/177701428-42c1b3fc-48b7-4f32-8034-6d1e53c4c3da.png)
+![image](https://user-images.githubusercontent.com/11295764/177700924-704ad65f-c93b-47e3-95fa-478a0dd901ff.png)
+![image](https://user-images.githubusercontent.com/11295764/177700945-d630e604-87ec-403b-966a-f4f7c7c26395.png)
+![image](https://user-images.githubusercontent.com/11295764/177700982-ff8d3aa6-6c12-4310-af3a-1cd9248679db.png)
 
 
 ## JIRA
