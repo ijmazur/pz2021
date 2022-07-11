@@ -50,6 +50,16 @@ class RestaurantsProductsView(APIView):
         serializer = serializers.ProductsSerializer(products, many=True)
         return Response(serializer.data)
 
+class RestaurantsOpeningView(APIView):
+    """Handle viewing all restaurant's orders"""
+    def get(self, request, restaurant_id):
+        try:
+            opening = models.OpeningHours.objects.filter(restaurant__id=restaurant_id)
+        except models.Restaurant.DoesNotExist:
+            raise Http404
+        serializer = serializers.OpeningHoursSerializer(opening, many=True)
+        return Response(serializer.data)
+
 class OrderViewSet(viewsets.ModelViewSet):
     """Handle creating and updating orders"""
     serializer_class = serializers.OrderSerializer

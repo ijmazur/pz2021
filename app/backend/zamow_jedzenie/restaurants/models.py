@@ -49,34 +49,55 @@ class Category(models.Model):
     objects = CategoryManager()
 
 
-WEEKDAYS = [
-  (1, ("Monday")),
-  (2, ("Tuesday")),
-  (3, ("Wednesday")),
-  (4, ("Thursday")),
-  (5, ("Friday")),
-  (6, ("Saturday")),
-  (7, ("Sunday")),
-]
-
 class OpeningHoursManager(BaseUserManager):
     """Manager for OpeningHours profiles"""
 
-    def create_user(self, weekday , from_hour, to_hour, restaurant):
+    def create_user(self,
+                    from_hour_monday, to_hour_monday,
+                    from_hour_tuesday, to_hour_tuesday,
+                    from_hour_wednesday, to_hour_wednesday,
+                    from_hour_thursday, to_hour_thursday,
+                    from_hour_friday, to_hour_friday,
+                    from_hour_saturday, to_hour_saturday,
+                    from_hour_sunday, to_hour_sunday,
+                    restaurant):
 
-        open = self.model(weekday=weekday, from_hour=from_hour, to_hour=to_hour, restaurant=restaurant)
+        open = self.model(from_hour_monday=from_hour_monday, to_hour_monday=to_hour_monday,
+                        from_hour_tuesday=from_hour_tuesday, to_hour_tuesday=to_hour_tuesday,
+                        from_hour_wednesday=from_hour_wednesday, to_hour_wednesday=to_hour_wednesday,
+                        from_hour_thursday=from_hour_thursday, to_hour_thursday=to_hour_thursday,
+                        from_hour_friday=from_hour_friday, to_hour_friday=to_hour_friday,
+                        from_hour_saturday=from_hour_saturday, to_hour_saturday=to_hour_saturday,
+                        from_hour_sunday=from_hour_sunday, to_hour_sunday=to_hour_sunday,
+                        restaurant=restaurant)
         open.save(using=self._db)
 
         return open
 
 
 class OpeningHours(models.Model):
-    weekday = models.IntegerField(
-        choices=WEEKDAYS,
-        unique=True
-    )
-    from_hour = models.TimeField()
-    to_hour = models.TimeField()
+
+    from_hour_monday = models.TimeField()
+    to_hour_monday = models.TimeField()
+
+    from_hour_tuesday = models.TimeField()
+    to_hour_tuesday = models.TimeField()
+
+    from_hour_wednesday = models.TimeField()
+    to_hour_wednesday = models.TimeField()
+
+    from_hour_thursday = models.TimeField()
+    to_hour_thursday = models.TimeField()
+
+    from_hour_friday = models.TimeField()
+    to_hour_friday = models.TimeField()
+
+    from_hour_saturday = models.TimeField()
+    to_hour_saturday = models.TimeField()
+
+    from_hour_sunday = models.TimeField()
+    to_hour_sunday = models.TimeField()
+
     restaurant = models.ForeignKey('Restaurant', on_delete=models.CASCADE, default='1')
     objects = OpeningHoursManager()
 

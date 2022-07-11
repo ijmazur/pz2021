@@ -23,14 +23,25 @@ class CategorySerializer(serializers.ModelSerializer):
 class OpeningHoursSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.OpeningHours
-        fields = ('id', 'weekday', 'from_hour', 'to_hour', 'restaurant')
+        fields = ('__all__')
 
     def create(self, validated_data):
         """Create and return new OpeningHour"""
         open = models.OpeningHours.objects.create_user(
-        weekday=validated_data['weekday'],
-        from_hour=validated_data['from_hour'],
-        to_hour=validated_data['to_hour'],
+        from_hour_monday=validated_data['from_hour_monday'],
+        to_hour_monday=validated_data['to_hour_monday'],
+        from_hour_tuesday=validated_data['from_hour_tuesday'],
+        to_hour_tuesday=validated_data['to_hour_tuesday'],
+        from_hour_wednesday=validated_data['from_hour_wednesday'],
+        to_hour_wednesday=validated_data['to_hour_wednesday'],
+        from_hour_thursday=validated_data['from_hour_thursday'],
+        to_hour_thursday=validated_data['to_hour_thursday'],
+        from_hour_friday=validated_data['from_hour_friday'],
+        to_hour_friday=validated_data['to_hour_friday'],
+        from_hour_saturday=validated_data['from_hour_saturday'],
+        to_hour_saturday=validated_data['to_hour_saturday'],
+        from_hour_sunday=validated_data['from_hour_sunday'],
+        to_hour_sunday=validated_data['to_hour_sunday'],
         restaurant=validated_data['restaurant']
         )
         return open
