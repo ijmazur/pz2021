@@ -48,6 +48,9 @@ class Category(models.Model):
 
     objects = CategoryManager()
 
+    def __str__(self):
+        return self.name
+
 
 class OpeningHoursManager(BaseUserManager):
     """Manager for OpeningHours profiles"""
@@ -150,6 +153,9 @@ class Restaurant(models.Model):
     deliveryCost = models.DecimalField(max_digits=4, decimal_places=2)
 
     objects = RestaurantManager()
+    
+    def __str__(self):
+        return self.name
 
 
 class OrderManager(BaseUserManager):

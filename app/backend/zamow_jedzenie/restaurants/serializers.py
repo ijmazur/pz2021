@@ -99,6 +99,12 @@ class RestaurantsProductsSerializer(serializers.ModelSerializer):
         model = models.Restaurant
         fields = ('__all__')
 
+class RestaurantsNameAndIdSerializer(serializers.ModelSerializer):
+    """Serializes a restaurant object"""
+    class Meta:
+        model = models.Restaurant
+        fields = ('id', 'name')
+
 class RestaurantIdSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Restaurant

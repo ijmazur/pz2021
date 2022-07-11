@@ -15,6 +15,11 @@ class RestaurantViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.RestaurantSerializer
     queryset = models.Restaurant.objects.all()
 
+class RestaurantsNameAndIdViewSet(viewsets.ModelViewSet):
+    """Handle creating and updating Restaurant"""
+    serializer_class = serializers.RestaurantsNameAndIdSerializer
+    queryset = models.Restaurant.objects.all()
+
 
 class CategoryViewSet(viewsets.ModelViewSet):
     """Handle creating and updating Category"""

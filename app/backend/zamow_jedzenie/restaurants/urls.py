@@ -8,6 +8,7 @@ from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register('restaurants', views.RestaurantViewSet, basename='restaurants')
+router.register('restaurantsId', views.RestaurantsNameAndIdViewSet, basename='restaurantsId')
 router.register('categories', views.CategoryViewSet, basename='categories')
 router.register('opening', views.OpeningHoursViewSet, basename='opening')
 router.register('products', views.ProductViewSet, basename='products')
