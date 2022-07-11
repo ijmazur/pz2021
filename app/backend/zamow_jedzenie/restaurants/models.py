@@ -138,6 +138,8 @@ class Product(models.Model):
 
     objects = ProductManager()
 
+    def __str__(self):
+        return self.name
 
 class Restaurant(models.Model):
     """Database model for Restaurant in the system"""
@@ -153,7 +155,7 @@ class Restaurant(models.Model):
     deliveryCost = models.DecimalField(max_digits=4, decimal_places=2)
 
     objects = RestaurantManager()
-    
+
     def __str__(self):
         return self.name
 
