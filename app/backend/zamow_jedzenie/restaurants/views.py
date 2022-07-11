@@ -16,16 +16,11 @@ class RestaurantViewSet(viewsets.ModelViewSet):
     queryset = models.Restaurant.objects.all()
 
 
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (permissions.UpdateOwnProfile,)
-
 class CategoryViewSet(viewsets.ModelViewSet):
     """Handle creating and updating Category"""
     serializer_class = serializers.CategorySerializer
     queryset = models.Category.objects.all()
 
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (permissions.UpdateOwnProfile,)
 
     filter_backends = (filters.SearchFilter,)
     search_fields = ('name')
@@ -74,6 +69,17 @@ class RestaurantsOrderDetailsView(APIView):
             raise Http404
         serializer = serializers.OrderSerializer(orders)
         return Response(serializer.data)
+
+class UsersOrderDetailsView(APIView):
+    """Handle viewing users specific orders"""
+    def get(self, request, user_id, order_id):
+        try:
+            orders = models.Order.objects.get(userId__id=user_id, pk=order_id)
+        except models.Restaurant.DoesNotExist:
+            raise Http404
+        serializer = serializers.OrderSerializer(orders)
+        return Response(serializer.data)
+
 
 class RestaurantsOrdersView(APIView):
     """Handle viewing all restaurant's orders"""

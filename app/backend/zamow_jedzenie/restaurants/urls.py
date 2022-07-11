@@ -26,4 +26,5 @@ urlpatterns = [
     path('users/<str:user_id>/orders/', views.UsersOrdersView.as_view()),
     path('users/<str:user_id>/restaurants/', views.UsersRestaurantsView.as_view()),
     path('restaurants/<str:restaurant_id>/products/', views.RestaurantsProductsView.as_view()),
+    path('users/<str:user_id>/orders/<str:order_id>/', views.UsersOrderDetailsView.as_view()),
 ]

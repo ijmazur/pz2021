@@ -41,7 +41,7 @@ class ProductsSerializer(serializers.ModelSerializer):
     restaurant = set()
     class Meta:
         model = models.Product
-        fields = ['id', 'name', 'description', 'price', 'image', 'categories']
+        fields = ['id', 'name', 'description', 'price', 'image', 'categories', 'restaurantId']
         #name description price categories image restaurantId
     def create(self, validated_data):
         """Create and return new product"""
@@ -50,7 +50,8 @@ class ProductsSerializer(serializers.ModelSerializer):
         description=validated_data['description'],
         price=validated_data['price'],
         image=validated_data['image'],
-        categories=validated_data['categories']
+        categories=validated_data['categories'],
+        restaurantId=validated_data['restaurantId']
         )
         return product
 

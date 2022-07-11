@@ -84,7 +84,7 @@ class OpeningHours(models.Model):
 class ProductManager(BaseUserManager):
     """Manager for Restaurant Products"""
 
-    def create_user(self, name, description, price, categories, image):
+    def create_user(self, name, description, price, categories, image, restaurantId):
         if not name:
             raise ValueError('Product must have an name')
         if not description:
@@ -96,7 +96,7 @@ class ProductManager(BaseUserManager):
         if not image:
             raise ValueError('Product must have an image')
 
-        product = self.model(name=name, description=description, price=price, categories=categories, image=image)
+        product = self.model(name=name, description=description, price=price, categories=categories, image=image, restaurantId=restaurantId)
         product.save(using=self._db)
 
         return product
