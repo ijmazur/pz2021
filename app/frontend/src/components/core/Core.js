@@ -171,7 +171,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="szukaj…"
+              placeholder="nie szukaj… (nie działa)"
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>

@@ -111,7 +111,7 @@ export const RestaurantView = (props) => {
     return (
 
       <ImageList sx={{ width: 'auto', height: 'auto' }} cols={5} rowHeight='auto'>
-        {itemData.slice(1).map((item) => (
+        {itemData.map((item) => (
           <ImageListItem key={item.image}>
             <img
               src={`${item.image}?w=248&fit=crop&auto=format`}

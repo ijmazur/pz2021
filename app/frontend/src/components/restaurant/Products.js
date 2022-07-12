@@ -24,7 +24,15 @@ import Paper from '@mui/material/Paper';
 import Container from '@mui/material/Container';
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
-
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Divider from '@mui/material/Divider';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import { SliderValueLabelUnstyled } from '@mui/base';
 
 const Item = styled(Paper)(({ theme }) => ({
 
@@ -40,40 +48,88 @@ function StarRating() {
 
 
   return (
-    <Box
-      sx={{
-        width: 500,
-        display: 'flex',
-        ml: 2
-      }}
-    >
-
+    <>
+<Typography>Oceń nas!</Typography>
       <Rating
         precision={0.1}
         emptyIcon={<><StarIcon style={{ opacity: 0.55 }} fontSize="inherit" /></>}
+        
       />
-      <Typography sx={{ ml: 10 }}>Oceń nas!</Typography>
-    </Box>
+     </>
   );
+
 }
 
 
 
+
+
+
+
+
 export const Products = (props) => {
+
+
+
+
+
+
+  const [products, setProducts] = React.useState([]);
+  useEffect(() => {
+    return axios
+      .get("https://test-api-zamow-jedzenie.herokuapp.com/restaurants/" + props.restaurant.id +"/products/", {})
+      .then(response => {
+        setProducts(response.data)
+        const food = products;
+
+
+      });
+  }, []);
+
+
+  const [categories, setCategories] = React.useState([]);
+  useEffect(() => {
+    return axios
+      .get("https://test-api-zamow-jedzenie.herokuapp.com/categories/", {})
+      .then(response => {
+        setCategories(response.data.filter(item => item.restaurant == props.restaurant.id))
+       
+
+
+
+      });
+  }, []);
+
+
+
+
+    const [value, setValue] = React.useState('WSZYSTKO');
+    const [category, setCategory] = React.useState('2');
+
+
+
+  
+
+
+
+
+
+  console.log(categories)
   const { state } = useLocation()
   return (
     <>
       <Core button={props.button} />
-      <Container maxWidth={false}>
+      <Container maxWidth={true}>
 
-        <Grid container spacing={2} 
+        <Grid container spacing={2}
         >
           <Grid item xs={4} container spacing={0}>
             <Item>
               <img
                 src={`${props.restaurant.image}?w=248&fit=crop&auto=format`}
                 srcSet={`${props.restaurant.image}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                alt={props.restaurant.image}
+                alt={props.restaurant.image} xs={4}
+
                 width={400} height={400}
                 loading="lazy"
               />
@@ -108,9 +164,9 @@ export const Products = (props) => {
               <Grid item xs={'7'} >
                 <Item>
                   <Typography >Dane kontaktowe:</Typography>
-                  <Typography ><ContactPhoneIcon style={{verticalAlign:"middle"}} /> {props.restaurant.phoneNumber} </Typography>
-                  <Typography > <LocationCityIcon style={{verticalAlign:"middle"}} /> {props.restaurant.address}</Typography>
-                  
+                  <Typography ><ContactPhoneIcon style={{ verticalAlign: "middle" }} /> {props.restaurant.phoneNumber} </Typography>
+                  <Typography > <LocationCityIcon style={{ verticalAlign: "middle" }} /> {props.restaurant.address}</Typography>
+
 
 
                 </Item>
@@ -134,7 +190,50 @@ export const Products = (props) => {
 
           </Grid>
           <Grid item xs={8}>
-            <Item>xs=4</Item>
+            <Item>
+            <Box sx={{ width: '100%' }}>
+              
+      <Tabs
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.innerText)
+          if(e.target.innerText == "WSZYSTKO")
+          setCategory(2);
+         setCategory(categories.filter(item => (item.name == e.target.innerText.toLowerCase()))[0].id)
+
+        console.log(category)}
+        }
+
+      >
+        { categories.map(item => 
+         <Tab value={item.name.toUpperCase()} label={item.name.toUpperCase()} /> )}
+      </Tabs>
+    </Box>
+              <List >
+              <Divider style={{width:'100%'}} />
+                {products.filter(item => item.categories == category).map(item =>
+<>
+                  <ListItem>
+
+                    <ListItemAvatar extAlign ="left">
+                      <Avatar sx={{ width: 150, height: 150 }} src={item.image} />
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary={item.name + " " + item.price + "zł"}
+                      secondary={item.description}
+                    />
+                   
+                    <Button size="medium" onClick={() => {
+                    }} ><>Dodaj do koszyka</></Button>
+                    
+                  </ListItem>
+                  <Divider style={{width:'100%'}} />
+                  </>
+                )}
+
+              </List>
+
+            </Item>
           </Grid>
         </Grid>
 
@@ -143,6 +242,11 @@ export const Products = (props) => {
       <Footerv2 />
     </>
   )
+}
+
+
+function filtered(){
+  
 }
 
 export default Products;
