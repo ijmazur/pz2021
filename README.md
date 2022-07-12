@@ -21,6 +21,8 @@ The main core of our application, here the user can choose between restaurants f
 ![image](https://user-images.githubusercontent.com/11295764/177700332-bd964039-a95a-43e8-8ee2-4c6b82aaaa13.png)
 ![image](https://user-images.githubusercontent.com/11295764/177700469-dae279eb-b29c-4528-b5c2-25beb0ccdf74.png)
 ![image](https://user-images.githubusercontent.com/11295764/177700535-93b73f4b-e606-4806-81c7-e00295f1dddb.png)
+![image](https://user-images.githubusercontent.com/11295764/178469559-2368d049-b66e-472e-91cc-0c25452e31d9.png)
+![image](https://user-images.githubusercontent.com/11295764/178469604-b4c94576-1a35-40eb-8989-787c475dedd3.png)
 
 
 ## Registration & Login
@@ -71,6 +73,8 @@ The app is equipped with both dark and light mode for more demanding users. User
 ![image](https://user-images.githubusercontent.com/11295764/177700924-704ad65f-c93b-47e3-95fa-478a0dd901ff.png)
 ![image](https://user-images.githubusercontent.com/11295764/177700945-d630e604-87ec-403b-966a-f4f7c7c26395.png)
 ![image](https://user-images.githubusercontent.com/11295764/177700982-ff8d3aa6-6c12-4310-af3a-1cd9248679db.png)
+![image](https://user-images.githubusercontent.com/11295764/178469683-1d9897a7-3bb4-46b1-adc9-3d6f6aec2a60.png)
+![image](https://user-images.githubusercontent.com/11295764/178469715-e1a251d6-8585-4aff-aa5b-ae73a333169d.png)
 
 
 ## JIRA
