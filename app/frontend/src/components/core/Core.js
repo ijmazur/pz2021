@@ -166,20 +166,6 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
           </a>
             <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div">
             </Typography>
-            <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="nie szukaj… (nie działa)"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
-            <IconButton>
-            <Badge badgeContent={4} color="warning">
-                <NotificationsIcon/>
-                </Badge>
-            </IconButton>
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -193,9 +179,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
         </AppBar>
         <Main open={open}>
           <DrawerHeader />
-          <Typography variant="h4" noWrap sx={{ flexGrow: 1 }} component="div" align="center"  >
-            <RestaurantMenuIcon fontSize='medium' /> {props.text}
-          </Typography>
+
           {/* <Footerv2 /> */}
         </Main>
         <Drawer

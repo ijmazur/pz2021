@@ -49,13 +49,13 @@ function StarRating() {
 
   return (
     <>
-<Typography>Oceń nas!</Typography>
+      <Typography>Oceń nas!</Typography>
       <Rating
         precision={0.1}
         emptyIcon={<><StarIcon style={{ opacity: 0.55 }} fontSize="inherit" /></>}
-        
+
       />
-     </>
+    </>
   );
 
 }
@@ -77,7 +77,7 @@ export const Products = (props) => {
   const [products, setProducts] = React.useState([]);
   useEffect(() => {
     return axios
-      .get("https://test-api-zamow-jedzenie.herokuapp.com/restaurants/" + props.restaurant.id +"/products/", {})
+      .get("https://test-api-zamow-jedzenie.herokuapp.com/restaurants/" + props.restaurant.id + "/products/", {})
       .then(response => {
         setProducts(response.data)
         const food = products;
@@ -93,7 +93,7 @@ export const Products = (props) => {
       .get("https://test-api-zamow-jedzenie.herokuapp.com/categories/", {})
       .then(response => {
         setCategories(response.data.filter(item => item.restaurant == props.restaurant.id))
-       
+
 
 
 
@@ -101,14 +101,82 @@ export const Products = (props) => {
   }, []);
 
 
+  useEffect(() => {
+    return;
+
+  }, []);
 
 
-    const [value, setValue] = React.useState('WSZYSTKO');
-    const [category, setCategory] = React.useState('2');
+
+
+  const [value, setValue] = React.useState('WSZYSTKO');
+  const [category, setCategory] = React.useState('2');
+
+
+  function checkOrders(id) {
+    let orders = []
+    let cart
+    axios
+      .get("https://test-api-zamow-jedzenie.herokuapp.com/users/" + authService.getCurrentUser().id + "/orders/", {})
+      .then(response => {
+        orders = response.data;
+        if (orders.find(e => e.status == 'cart' && e.restaurantId == props.restaurant.id) != undefined && orders.leght != 0) {
+          console.log("jest koszyk")
+
+        }
+        else {
+          axios
+            .post("https://test-api-zamow-jedzenie.herokuapp.com/orders/", {
+              "status": "cart",
+              "userId": authService.getCurrentUser().id,
+              "restaurantId": props.restaurant.id,
+              "items": [id]
+
+            }).then(response => {
+              axios
+                .get("https://test-api-zamow-jedzenie.herokuapp.com/users/" + authService.getCurrentUser().id + "/orders/", {})
+                .then(response => {
+                  orders = response.data;
+                  cart = orders.find(e => e.status == 'cart' && e.restaurantId == props.restaurant.id)
+                  console.log(cart.id)
+                  axios
+                    .patch("https://test-api-zamow-jedzenie.herokuapp.com/orders/" + cart.id + "/", {
+                      "status": "cart",
+                      "userId": authService.getCurrentUser().id,
+                      "restaurantId": props.restaurant.id,
+                      "items": [...cart.items, id]
+
+                    })
+
+                })
+            })
+        }
+
+      }).then(response => {
+        axios
+          .get("https://test-api-zamow-jedzenie.herokuapp.com/users/" + authService.getCurrentUser().id + "/orders/", {})
+          .then(response => {
+            orders = response.data;
+            cart = orders.find(e => e.status == 'cart')
+            console.log(cart.id)
+            axios
+              .patch("https://test-api-zamow-jedzenie.herokuapp.com/orders/" + cart.id + "/", {
+                "status": "cart",
+                "userId": authService.getCurrentUser().id,
+                "restaurantId": props.restaurant.id,
+                "items": [...cart.items, id]
+
+              })
+
+          })
+      });
 
 
 
-  
+
+  }
+
+
 
 
 
@@ -191,43 +259,45 @@ export const Products = (props) => {
           </Grid>
           <Grid item xs={8}>
             <Item>
-            <Box sx={{ width: '100%' }}>
-              
-      <Tabs
-        value={value}
-        onChange={(e) => {
-          setValue(e.target.innerText)
-          if(e.target.innerText == "WSZYSTKO")
-          setCategory(2);
-         setCategory(categories.filter(item => (item.name == e.target.innerText.toLowerCase()))[0].id)
+              <Box sx={{ width: '100%' }}>
 
-        console.log(category)}
-        }
+                <Tabs
+                  value={value}
+                  onChange={(e) => {
+                    setValue(e.target.innerText)
+                    if (e.target.innerText == "WSZYSTKO")
+                      setCategory(2);
+                    setCategory(categories.filter(item => (item.name == e.target.innerText.toLowerCase()))[0].id)
 
-      >
-        { categories.map(item => 
-         <Tab value={item.name.toUpperCase()} label={item.name.toUpperCase()} /> )}
-      </Tabs>
-    </Box>
+                    console.log(category)
+                  }
+                  }
+
+                >
+                  {categories.map(item =>
+                    <Tab value={item.name.toUpperCase()} label={item.name.toUpperCase()} />)}
+                </Tabs>
+              </Box>
               <List >
-              <Divider style={{width:'100%'}} />
+                <Divider style={{ width: '100%' }} />
                 {products.filter(item => item.categories == category).map(item =>
-<>
-                  <ListItem>
+                  <>
+                    <ListItem>
 
-                    <ListItemAvatar extAlign ="left">
-                      <Avatar sx={{ width: 150, height: 150 }} src={item.image} />
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary={item.name + " " + item.price + "zł"}
-                      secondary={item.description}
-                    />
-                   
-                    <Button size="medium" onClick={() => {
-                    }} ><>Dodaj do koszyka</></Button>
-                    
-                  </ListItem>
-                  <Divider style={{width:'100%'}} />
+                      <ListItemAvatar extAlign="left">
+                        <Avatar sx={{ width: 150, height: 150 }} src={item.image} />
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary={item.name + " " + item.price + "zł"}
+                        secondary={item.description}
+                      />
+
+                      <Button size="medium" onClick={() => {
+                        checkOrders(item.id)
+                      }} ><>Dodaj do koszyka</></Button>
+
+                    </ListItem>
+                    <Divider style={{ width: '100%' }} />
                   </>
                 )}
 
@@ -245,8 +315,5 @@ export const Products = (props) => {
 }
 
 
-function filtered(){
-  
-}
 
 export default Products;

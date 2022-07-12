@@ -9,6 +9,7 @@ import Login from './components/Login';
 import Core from './components/core/Core';
 import History from './components/user/History';
 import Test from './components/test/Test';
+import Cart from './components/cart/cart';
 import GoSomewhere from './components/test/GoSomewhere';
 import Profile from './components/user/Profile';
 import Payments from './components/payments/Payments';
@@ -95,6 +96,7 @@ export default function ToggleColorMode() {
             <Route path="/history" element={<History button={<ThemeButton />} />} />
             <Route path="/profile" element={<Profile button={<ThemeButton />} />} />
             <Route path="/payment" element={<Payments button={<ThemeButton />} />} />
+            <Route path="/cart" element={<Cart button={<ThemeButton />} />} />
            
             
             
