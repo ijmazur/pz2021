@@ -21,8 +21,8 @@ jobs:
           cd app/frontend
           rm .env
           npm install
-      - name: fix heroku
-        run: git config user.email "adam.b.checinski@gmail.com" && git config user.name "adam" && git add -A && git commit -m "Updated code"
+          #- name: fix heroku
+        #    run: git config user.email "adam.b.checinski@gmail.com" && git config user.name "adam" && git add -A && git commit -m "Updated code"
       - name: deploy
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
