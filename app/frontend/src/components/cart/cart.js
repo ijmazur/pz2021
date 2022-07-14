@@ -38,31 +38,30 @@ export const Cart = (props) => {
 
 
 
-    const [items, setItems] = React.useState([]);
-    useEffect(async () => {
-      const response = await axios
-            .get("https://test-api-zamow-jedzenie.herokuapp.com/users/" + authService.getCurrentUser().id + "/orders/", {});
-        setItems(response.data.filter(i => i.status == 'cart'));
-        let xd = response.data;
-        setItems(xd.filter(i => i.status == 'cart'));
-        console.log(items);
+    const [items, setItems] = React.useState();
+    useEffect( () => {
+      axios
+            .get("https://test-api-zamow-jedzenie.herokuapp.com/users/" + authService.getCurrentUser().id + "/orders/", {}).then(response => { setItems(response.data.filter(i => i.status == 'cart'));
+            let xd = response.data;
+            setItems(xd.filter(i => i.status == 'cart'));
+            console.log(items);});
+       
     }, []);
 
 
-    const [restaurants, setRestaurants] = React.useState([]);
-    useEffect(async () => {
+    const [restaurants, setRestaurants] = React.useState();
+    useEffect( () => {
       let temp;
-      const response = await axios
-            .get("https://test-api-zamow-jedzenie.herokuapp.com/restaurantsId/", {})
-            temp = response.data;
+      axios
+            .get("https://test-api-zamow-jedzenie.herokuapp.com/restaurantsId/", {}).then(response => { temp = response.data;
             setRestaurants(temp)
-            console.log("XD")
+            console.log("XD")})
+           
     }, []);
 
 
 
-    const [products, setProducts] = React.useState([]);
-
+    const [products, setProducts] = React.useState();
 
     useEffect(() => {
         let temp;
@@ -73,13 +72,14 @@ export const Cart = (props) => {
               });
       }, []);
 
-
+      let sum = 0;
     function getProductId(arr){
-
+     
         return (arr.map(item =>
             <List>
               <ListItem>
-                  <Typography>{products.find(p => (p.id == item)).name}</Typography>
+                  <Typography>{products.find(p => (p.id == item)).name} {products.find(p => (p.id == item)).price} zł</Typography>
+                   {(sum += Number(products.find(p => (p.id == item)).price)) && false}
                   <Typography>
                   <Box sx={{ textAlign: 'right', m: 1 }}></Box>
                   </Typography>  
@@ -96,8 +96,10 @@ export const Cart = (props) => {
 
 
 
-
-
+  if(restaurants == undefined || items == undefined || products == undefined){
+    return <>loading..</>
+  }
+  else
   return (
     <>
       <Core button={props.button} text={""} />
@@ -107,19 +109,21 @@ export const Cart = (props) => {
          <>
          {items.map(item =>
                   <>
-                  {}
+                  {restaurants.find(r => (r.id == item.restaurantId)).name}
                     <ListItem>
                         
                         <List>
                         {getProductId(item.items)}
+                       
                         </List>
                        
                     </ListItem>
                     <Divider style={{ width: '100%' }} />
+                    
                   </>
                 )}
          </>
-       
+         suma: {sum} zł
      </List>
       </Container>
     </>
