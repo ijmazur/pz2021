@@ -139,7 +139,7 @@ export const Products = (props) => {
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
-  const CustomizedSnackbars = (item) => {
+  const CustomizedSnackbars = (items) => {
     const [open, setOpen] = React.useState(false);
     const handleClick = () => {
       setOpen(true);
@@ -158,11 +158,16 @@ export const Products = (props) => {
     });
 
     const { vertical, horizontal } = state;
+    // console.log("item.item", item.item);
+    console.log("items.items", items.items);
+    console.log("items.item", items.item);
+    // console.log("item", item);
+    console.log("items", items);
 
     return (
       <Stack spacing={2} >
         <Button variant="string" size="medium" onClick={() => {
-          checkOrders(item.id);
+          checkOrders(items.id);
           handleClick({ vertical: 'top', horizontal: 'right', })
         }}>
           <>Dodaj do koszyka</>
@@ -176,8 +181,9 @@ export const Products = (props) => {
     );
   }
 
-  console.log(categories)
+  console.log("categories", categories);
   const { state } = useLocation()
+  
   return (
     <>
       <Core button={props.button} />
@@ -240,7 +246,7 @@ export const Products = (props) => {
                     if (e.target.innerText == "WSZYSTKO")
                       setCategory(2);
                     setCategory(categories.filter(item => (item.name == e.target.innerText.toLowerCase()))[0].id)
-                    console.log(category)
+                    console.log("category in return", category)
                   }
                   }
                 >
@@ -263,11 +269,12 @@ export const Products = (props) => {
                       {/* <Button variant="string" size="medium" onClick={() => {
                         checkOrders(item.id)
                       }} ><>Dodaj do koszyka</></Button> */}
-                      <CustomizedSnackbars />
+                      <CustomizedSnackbars items={item.item} />
                     </ListItem>
                     <Divider style={{ width: '100%' }} />
-                  </>
-                )}
+                  </>,
+                  console.log("item line 276", item)
+                ),console.log("item line 277", item)}
               </List>
             </Item>
             <Stack direction="row" justifyContent="end">
