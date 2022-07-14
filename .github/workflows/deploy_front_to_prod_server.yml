@@ -7,7 +7,7 @@ on:
       - '*' 
 
 jobs:
-  deploy_front_to_test:
+  deploy_front_to_prod:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -26,6 +26,3 @@ jobs:
           heroku_app_name: 'zamow-jedzenie'
           heroku_email: 'adam.b.checinski@gmail.com'
           appdir: 'app/frontend'
-          # healthcheck: "https://zamow-jedzenie.herokuapp.com"
-          # delay: 5
-          # rollbackonhealthcheckfailed: true
