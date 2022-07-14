@@ -139,7 +139,7 @@ export const Products = (props) => {
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
-    const CustomizedSnackbars = () => {
+  const CustomizedSnackbars = (item) => {
     const [open, setOpen] = React.useState(false);
     const handleClick = () => {
       setOpen(true);
@@ -151,17 +151,25 @@ export const Products = (props) => {
       setOpen(false);
     };
 
+    const [state, setState] = React.useState({
+      open: false,
+      vertical: 'top',
+      horizontal: 'right',
+    });
+
+    const { vertical, horizontal } = state;
+
     return (
-      <Stack spacing={2} sx={{ width: '100%' }}>
-        <Button variant="string" onClick={() => {
+      <Stack spacing={2} >
+        <Button variant="string" size="medium" onClick={() => {
           checkOrders(item.id);
-          handleClick
+          handleClick({ vertical: 'top', horizontal: 'right', })
         }}>
           <>Dodaj do koszyka</>
         </Button>
-        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Snackbar open={open} autoHideDuration={3000} onClose={handleClose} key={vertical + horizontal}>
           <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-            shit men, club, toilet rn, waiting for the party to begin
+            Przedmiot został dodany do koszyka!
           </Alert>
         </Snackbar>
       </Stack>
