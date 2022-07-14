@@ -37,6 +37,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Stack from "@mui/material/Stack";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? 'palette.divider' : '#e3f2fd',
@@ -188,7 +190,9 @@ export const Products = (props) => {
     return (
     <>
     <Core />
-      loading...
+    <Box sx={{ display: 'flex', justifyContent:'center', alignItems:'center', height: '100vh' }}>
+      <CircularProgress />
+    </Box>
     </>
     )
   }

@@ -34,6 +34,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { SliderValueLabelUnstyled } from '@mui/base';
 import PaymentsIcon from '@mui/icons-material/Payments';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const Cart = (props) => {
 
@@ -105,7 +106,9 @@ export const Cart = (props) => {
     return (
       <>
       <Core />
-        loading...
+      <Box sx={{ display: 'flex', justifyContent:'center', alignItems:'center', height: '100vh' }}>
+        <CircularProgress />
+      </Box>
       </>
       )
   }

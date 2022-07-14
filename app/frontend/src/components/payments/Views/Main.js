@@ -31,7 +31,7 @@ const Main = () => {
     return <Box component="main" className={classes.boxWrapper}>
         <Container maxWidth="md" className={classes.container}>
             <Paper elevation={5}>
-                    ? <Elements stripe={stripePromise}>
+                    <Elements stripe={stripePromise}>
                         <CustomizedSteppers />
                     </Elements>
 
