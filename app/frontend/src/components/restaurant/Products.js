@@ -35,11 +35,10 @@ import Tab from '@mui/material/Tab';
 import { SliderValueLabelUnstyled } from '@mui/base';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Stack from "@mui/material/Stack";
-
-
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 const Item = styled(Paper)(({ theme }) => ({
-
   backgroundColor: theme.palette.mode === 'dark' ? 'palette.divider' : '#e3f2fd',
   ...theme.typography.body2,
   padding: theme.spacing(1),
@@ -47,37 +46,19 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-
 function StarRating() {
-
-
   return (
     <>
       <Typography>Oceń nas!</Typography>
       <Rating
         precision={0.1}
         emptyIcon={<><StarIcon style={{ opacity: 0.55 }} fontSize="inherit" /></>}
-
       />
     </>
   );
-
 }
 
-
-
-
-
-
-
-
 export const Products = (props) => {
-
-
-
-
-
-
   const [products, setProducts] = React.useState([]);
   useEffect(() => {
     return axios
@@ -85,11 +66,8 @@ export const Products = (props) => {
       .then(response => {
         setProducts(response.data)
         const food = products;
-
-
       });
   }, []);
-
 
   const [categories, setCategories] = React.useState([]);
   useEffect(() => {
@@ -97,25 +75,14 @@ export const Products = (props) => {
       .get("https://test-api-zamow-jedzenie.herokuapp.com/categories/", {})
       .then(response => {
         setCategories(response.data.filter(item => item.restaurant == props.restaurant.id))
-
-
-
-
       });
   }, []);
-
-
   useEffect(() => {
     return;
-
   }, []);
-
-
-
 
   const [value, setValue] = React.useState('WSZYSTKO');
   const [category, setCategory] = React.useState('2');
-
 
   function checkOrders(id) {
     let orders = []
@@ -126,7 +93,6 @@ export const Products = (props) => {
         orders = response.data;
         if (orders.find(e => e.status == 'cart' && e.restaurantId == props.restaurant.id) != undefined && orders.leght != 0) {
           console.log("jest koszyk")
-
         }
         else {
           axios
@@ -135,7 +101,6 @@ export const Products = (props) => {
               "userId": authService.getCurrentUser().id,
               "restaurantId": props.restaurant.id,
               "items": [id]
-
             }).then(response => {
               axios
                 .get("https://test-api-zamow-jedzenie.herokuapp.com/users/" + authService.getCurrentUser().id + "/orders/", {})
@@ -149,13 +114,10 @@ export const Products = (props) => {
                       "userId": authService.getCurrentUser().id,
                       "restaurantId": props.restaurant.id,
                       "items": [...cart.items, id]
-
                     })
-
                 })
             })
         }
-
       }).then(response => {
         axios
           .get("https://test-api-zamow-jedzenie.herokuapp.com/users/" + authService.getCurrentUser().id + "/orders/", {})
@@ -169,22 +131,42 @@ export const Products = (props) => {
                 "userId": authService.getCurrentUser().id,
                 "restaurantId": props.restaurant.id,
                 "items": [...cart.items, id]
-
               })
-
           })
       });
-
-
-
-
   }
 
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+    const CustomizedSnackbars = () => {
+    const [open, setOpen] = React.useState(false);
+    const handleClick = () => {
+      setOpen(true);
+    };
+    const handleClose = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+      setOpen(false);
+    };
 
-
-
-
-
+    return (
+      <Stack spacing={2} sx={{ width: '100%' }}>
+        <Button variant="string" onClick={() => {
+          checkOrders(item.id);
+          handleClick
+        }}>
+          <>Dodaj do koszyka</>
+        </Button>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+            shit men, club, toilet rn, waiting for the party to begin
+          </Alert>
+        </Snackbar>
+      </Stack>
+    );
+  }
 
   console.log(categories)
   const { state } = useLocation()
@@ -192,33 +174,26 @@ export const Products = (props) => {
     <>
       <Core button={props.button} />
       <Container maxWidth={true}>
-
-        <Grid container spacing={2}
-        >
+        <Grid container spacing={2}>
           <Grid item xs={4} container spacing={0}>
             <Item>
               <img
                 src={`${props.restaurant.image}?w=248&fit=crop&auto=format`}
                 srcSet={`${props.restaurant.image}?w=248&fit=crop&auto=format&dpr=2 2x`}
                 alt={props.restaurant.image} xs={4}
-
                 width={400} height={400}
                 loading="lazy"
               />
               <h3 align="left">{props.restaurant.description}</h3>
             </Item>
-
-
             <Grid container spacing={2} rows={2} style={{
               paddingTop: '20px',
             }}>
-
               <Grid item xs={'5'} >
                 <Item><StarRating></StarRating></Item>
                 <Grid style={{
                   paddingTop: '20px',
                 }}>
-
                   <Item  >
                     <Typography >Godziny pracy:</Typography>
                     <p>Pn 06:00 - 22:00</p>
@@ -228,8 +203,6 @@ export const Products = (props) => {
                     <p>Pt 06:00 - 22:00</p>
                     <p>Sb 06:00 - 22:00</p>
                     <p>Nd 06:00 - 22:00</p>
-
-
                     {/* <p>Pn {hours[0].from_hour_monday} - {hours[0].to_hour_monday}</p>
                     <p>Wt {hours[0].from_hour_tuesday} - {hours[0].to_hour_tuesday}</p>
                     <p>Śr {hours[0].from_hour_wednesday} - {hours[0].to_hour_wednesday}</p>
@@ -237,44 +210,21 @@ export const Products = (props) => {
                     <p>Pt {hours[0].from_hour_friday} - {hours[0].to_hour_friday}</p>
                     <p>Sb {hours[0].from_hour_saturday} - {hours[0].to_hour_saturday}</p>
                     <p>Nd {hours[0].from_hour_sunday} - {hours[0].to_hour_sunday}</p> */}
-
                   </Item>
                 </Grid>
-
               </Grid>
-
               <Grid item xs={'7'} >
                 <Item>
                   <Typography >Dane kontaktowe:</Typography>
                   <Typography ><ContactPhoneIcon style={{ verticalAlign: "middle" }} /> {props.restaurant.phoneNumber} </Typography>
                   <Typography > <LocationCityIcon style={{ verticalAlign: "middle" }} /> {props.restaurant.address}</Typography>
-
-
-
                 </Item>
-
               </Grid>
-
-
-
-
-
             </Grid>
-
-
-
-
-
-
-
-
-
-
           </Grid>
           <Grid item xs={8}>
             <Item>
               <Box sx={{ width: '100%' }}>
-
                 <Tabs
                   value={value}
                   onChange={(e) => {
@@ -282,11 +232,9 @@ export const Products = (props) => {
                     if (e.target.innerText == "WSZYSTKO")
                       setCategory(2);
                     setCategory(categories.filter(item => (item.name == e.target.innerText.toLowerCase()))[0].id)
-
                     console.log(category)
                   }
                   }
-
                 >
                   {categories.map(item =>
                     <Tab value={item.name.toUpperCase()} label={item.name.toUpperCase()} />)}
@@ -297,7 +245,6 @@ export const Products = (props) => {
                 {products.filter(item => item.categories == category).map(item =>
                   <>
                     <ListItem>
-
                       <ListItemAvatar extAlign="left">
                         <Avatar sx={{ width: 150, height: 150 }} src={item.image} />
                       </ListItemAvatar>
@@ -305,26 +252,21 @@ export const Products = (props) => {
                         primary={item.name + " " + item.price + "zł"}
                         secondary={item.description}
                       />
-
-                      <Button variant="string" size="medium" onClick={() => {
+                      {/* <Button variant="string" size="medium" onClick={() => {
                         checkOrders(item.id)
-                      }} ><>Dodaj do koszyka</></Button>
-
+                      }} ><>Dodaj do koszyka</></Button> */}
+                      <CustomizedSnackbars />
                     </ListItem>
                     <Divider style={{ width: '100%' }} />
-                  
-                  
                   </>
                 )}
-
-                  
               </List>
             </Item>
             <Stack direction="row" justifyContent="end">
-            <Button variant="string" startIcon={<ShoppingCartIcon />} component={Link} to="/cart">
-                    Koszyk
-                  </Button>
-                  </Stack>
+              <Button variant="string" startIcon={<ShoppingCartIcon />} component={Link} to="/cart">
+                Koszyk
+              </Button>
+            </Stack>
           </Grid>
         </Grid>
       </Container>
@@ -333,7 +275,5 @@ export const Products = (props) => {
     </>
   )
 }
-
-
 
 export default Products;
