@@ -21,8 +21,10 @@ The main core of our application, here the user can choose between restaurants f
 ![image](https://user-images.githubusercontent.com/11295764/177700332-bd964039-a95a-43e8-8ee2-4c6b82aaaa13.png)
 ![image](https://user-images.githubusercontent.com/11295764/177700469-dae279eb-b29c-4528-b5c2-25beb0ccdf74.png)
 ![image](https://user-images.githubusercontent.com/11295764/177700535-93b73f4b-e606-4806-81c7-e00295f1dddb.png)
-![image](https://user-images.githubusercontent.com/11295764/178469559-2368d049-b66e-472e-91cc-0c25452e31d9.png)
-![image](https://user-images.githubusercontent.com/11295764/178469604-b4c94576-1a35-40eb-8989-787c475dedd3.png)
+![image](https://user-images.githubusercontent.com/11295764/179046909-0ef55fec-40e8-4c2c-8739-e74d76b44dbc.png)
+![image](https://user-images.githubusercontent.com/11295764/179046947-70031f45-6068-4ce8-a668-240d6d7f15ec.png)
+![image](https://user-images.githubusercontent.com/11295764/179046969-e648c070-af7d-4654-87bb-f88f800b5ad7.png)
+
 
 
 ## Registration & Login
@@ -45,11 +47,16 @@ Healthcheck page for our hosting services to check if the website is returing a 
 Users are able to change the details of their accounts. 
 ![image](https://user-images.githubusercontent.com/11295764/177370153-ee1b1a1d-d2cd-48be-a37d-4c864db562a8.png)
 
+## Cart
+![image](https://user-images.githubusercontent.com/11295764/179047144-f544e56d-e359-4eb6-a371-e39fee9ffee7.png)
+
+
 ## Payments
 
 ![image](https://user-images.githubusercontent.com/11295764/177700646-0e384f29-8ab8-47d9-b8a6-927be2cf13a3.png)
 ![image](https://user-images.githubusercontent.com/11295764/177700680-da8ca2f7-9991-467e-9afd-31c637ffbff9.png)
 ![image](https://user-images.githubusercontent.com/11295764/177700730-fc71e375-0abf-499a-9866-2abf5d46c9aa.png)
+![image](https://user-images.githubusercontent.com/11295764/179047318-388b7931-e847-4004-80d0-49992ae999eb.png)
 
 
 ## Other
@@ -75,6 +82,10 @@ The app is equipped with both dark and light mode for more demanding users. User
 ![image](https://user-images.githubusercontent.com/11295764/177700982-ff8d3aa6-6c12-4310-af3a-1cd9248679db.png)
 ![image](https://user-images.githubusercontent.com/11295764/178469683-1d9897a7-3bb4-46b1-adc9-3d6f6aec2a60.png)
 ![image](https://user-images.githubusercontent.com/11295764/178469715-e1a251d6-8585-4aff-aa5b-ae73a333169d.png)
+![image](https://user-images.githubusercontent.com/11295764/179047461-012b26c2-4e72-4d90-8809-86658a0ae51f.png)
+![image](https://user-images.githubusercontent.com/11295764/179047513-216e487b-d427-4147-a54c-409dd588769e.png)
+![image](https://user-images.githubusercontent.com/11295764/179047390-3ec425c9-54ed-48ae-ad6e-4615baf7b300.png)
+
 
 
 ## JIRA
@@ -91,6 +102,9 @@ Roadmap and a sample sprint. <a href="https://team-1634732274320.atlassian.net/j
 <a href="https://test-api-zamow-jedzenie.herokuapp.com/swagger/">Swagger</a>
 
 ![image](https://user-images.githubusercontent.com/11295764/177372764-ba917a81-8838-4499-ad98-bbd352ff5b0e.png)
+![image](https://user-images.githubusercontent.com/11295764/179047610-fb02b6b3-4365-457b-8294-5b216590fbfc.png)
+![image](https://user-images.githubusercontent.com/11295764/179047643-af945964-8a30-4a48-b7f1-bf6bfdc41efd.png)
+
 
 ## Hosting
 
