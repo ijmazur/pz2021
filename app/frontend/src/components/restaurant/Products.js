@@ -272,9 +272,8 @@ export const Products = (props) => {
                       <CustomizedSnackbars items={item.item} />
                     </ListItem>
                     <Divider style={{ width: '100%' }} />
-                  </>,
-                  console.log("item line 276", item)
-                ),console.log("item line 277", item)}
+                  </>
+                )}
               </List>
             </Item>
             <Stack direction="row" justifyContent="end">
