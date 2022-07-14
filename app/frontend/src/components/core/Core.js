@@ -161,7 +161,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
         <AppBar position="fixed" open={open}>
           <Toolbar>
           {props.button}
-          <a href="/main">
+          <a href="/restaurantview">
             <img className='image' src={require("../../images/zjlogo.png")} width="150" height="75" alt="zamów jedzenie"/>
           </a>
             <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div">

@@ -266,10 +266,10 @@ export const Products = (props) => {
                         primary={item.name + " " + item.price + "zł"}
                         secondary={item.description}
                       />
-                      {/* <Button variant="string" size="medium" onClick={() => {
+                      <Button variant="string" size="medium" onClick={() => {
                         checkOrders(item.id)
-                      }} ><>Dodaj do koszyka</></Button> */}
-                      <CustomizedSnackbars items={item.item} />
+                      }} ><>Dodaj do koszyka</></Button>
+                      {/* <CustomizedSnackbars items={item.item} /> */}
                     </ListItem>
                     <Divider style={{ width: '100%' }} />
                   </>

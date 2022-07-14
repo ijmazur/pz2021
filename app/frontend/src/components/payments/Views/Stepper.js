@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
 import {
     Stepper,
@@ -30,6 +31,10 @@ import {
     stripeDataObjectConverter,
     clientSecretDataObjectConverter
 } from '../constants/functions';
+
+import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 // OVERALL STYLE
 const style = makeStyles(theme => ({
@@ -115,6 +120,40 @@ const Steppers = () => {
         setLoading(false);
     }
 
+    // const Testing = () => {
+    //     const [open2, setOpen2] = React.useState(false);
+    
+    //     const handleClick2 = () => {
+    //       setOpen2(true);
+    //     };
+    
+    //     const handleClose2 = (event, reason) => {
+    //       if (reason === 'clickaway') {
+    //         return;
+    //       }
+    
+    //       setOpen2(false);
+    //     };
+    
+    //     return (
+    //       <Stack spacing={2} sx={{ width: '100%' }}>
+    //         <Button variant="outlined" onClick={handleClick2}>
+    //           Open success snackbar
+    //         </Button>
+    //         <Snackbar open={open2} autoHideDuration={6000} onClose={handleClose2}>
+    //           <Alert onClose={handleClose2} severity="success" sx={{ width: '100%' }}>
+    //             shit men, club, toilet rn, waiting for the party to begin
+    //           </Alert>
+    //         </Snackbar>
+    //       </Stack>
+    //     );
+    //   }
+
+    const navigate = useNavigate();
+    const goToLogin = (goToPage) => {
+      navigate('/', { state: { data: goToPage } });
+    }
+
     return (
         <>
             <Stepper alternativeLabel className={classes.stepper} connector={<StepConnector />} activeStep={activeStep}>
@@ -162,6 +201,7 @@ const Steppers = () => {
                                     className={classes.button}
                                     type="submit"
                                     disabled={loading}
+                                    component={activeStep === 3 ?  goToLogin('/done') : handleNext()}
                                 >
                                     {
                                         loading
@@ -171,6 +211,8 @@ const Steppers = () => {
                                             activeStep === 2 ? 'Pay' : 'Dalej'
                                     }
                                 </Button>
+
+                                
                             </Grid>
                         </Grid>
                     </form>

@@ -88,7 +88,7 @@ export default function ToggleColorMode() {
             <Route path="/" element={<Navigate replace to='/login' />} />
             <Route exact path='/register' element={<Register button={<ThemeButton />}/>}/>
             <Route path="/login" element={<Login button={<ThemeButton />}/>} />
-            <Route path="/main" element={<GoSomewhere button={<ThemeButton />}/>} />
+            <Route path="/done" element={<GoSomewhere button={<ThemeButton />}/>} />
             <Route path="/restaurantview" element={<RestaurantView button={<ThemeButton />}/>}/>
             <Route path="/restaurantview/:name" element={<Products button={<ThemeButton />} />} />
             <Route path="/health" element={<HealthView button={<ThemeButton />} />} />
