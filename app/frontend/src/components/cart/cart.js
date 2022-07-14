@@ -102,7 +102,12 @@ export const Cart = (props) => {
 
 
   if (restaurants == undefined || items == undefined || products == undefined) {
-    return <>loading..</>
+    return (
+      <>
+      <Core />
+        loading...
+      </>
+      )
   }
   else
     return (

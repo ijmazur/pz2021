@@ -101,7 +101,7 @@ const Steppers = () => {
 
         setLoading(true);
 
-        console.log(formValues);
+        console.log("formValues 104", formValues);
         const clientSecretDataObject = clientSecretDataObjectConverter(formValues);
         const clientSecret = await clientSecretPull(clientSecretDataObject);
         const cardElement = elements.getElement(CardCvcElement);
@@ -116,25 +116,26 @@ const Steppers = () => {
             setCardMessage("");
             dispatch({ type: 'emptyFormValue' });
         }
+        console.log("clientSecret 119", clientSecret);
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
         setLoading(false);
     }
 
     // const Testing = () => {
     //     const [open2, setOpen2] = React.useState(false);
-    
+
     //     const handleClick2 = () => {
     //       setOpen2(true);
     //     };
-    
+
     //     const handleClose2 = (event, reason) => {
     //       if (reason === 'clickaway') {
     //         return;
     //       }
-    
+
     //       setOpen2(false);
     //     };
-    
+
     //     return (
     //       <Stack spacing={2} sx={{ width: '100%' }}>
     //         <Button variant="outlined" onClick={handleClick2}>
@@ -151,7 +152,7 @@ const Steppers = () => {
 
     const navigate = useNavigate();
     const goToLogin = (goToPage) => {
-      navigate('/', { state: { data: goToPage } });
+        navigate('/', { state: { data: goToPage } });
     }
 
     return (
@@ -194,25 +195,16 @@ const Steppers = () => {
                             <Grid container item justify="flex-end">
                                 <Button disabled={activeStep === 0} className={classes.button} onClick={handleBack}>
                                     Powrót
-                                    </Button>
+                                </Button>
                                 <Button
                                     variant="contained"
                                     color="primary"
                                     className={classes.button}
                                     type="submit"
-                                    disabled={loading}
-                                    component={activeStep === 3 ?  goToLogin('/done') : handleNext()}
+                                    onClick={() => { activeStep === 2 ? navigate("/done") : handleNext() }}
                                 >
-                                    {
-                                        loading
-                                            ?
-                                            <CircularProgress size={24} />
-                                            :
-                                            activeStep === 2 ? 'Pay' : 'Dalej'
-                                    }
+                                    {activeStep === 2 ? 'Pay' : 'Dalej'}
                                 </Button>
-
-                                
                             </Grid>
                         </Grid>
                     </form>

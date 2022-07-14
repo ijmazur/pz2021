@@ -43,7 +43,7 @@ export const GoSomewhere = (props) => {
       <Core button={props.button} text={"	👴🏿 Please go somewhere	👴🏿"} />
 
       <Stack sx={{ width: '100%' }} spacing={2}>
-        <Alert severity="success">
+        <Alert variant="filled" severity="success">
           <AlertTitle>Zamówienie złożone</AlertTitle>
           Twoje zamówienie zostało przyjęte <strong>dziękujemy!</strong>
         </Alert>
@@ -57,7 +57,7 @@ export const GoSomewhere = (props) => {
         style={{ minHeight: '100vh' }}>
         <Button
           variant="string"
-          onClick={() => goToLogin('/restaurantview')}
+          onClick={() => navigate('/restaurantview')}
         >
           {/* 💁🏼 Byeeee! 💅🏽 */}
           Powrót

@@ -59,7 +59,7 @@ function StarRating() {
 }
 
 export const Products = (props) => {
-  const [products, setProducts] = React.useState([]);
+  const [products, setProducts] = React.useState();
   useEffect(() => {
     return axios
       .get("https://test-api-zamow-jedzenie.herokuapp.com/restaurants/" + props.restaurant.id + "/products/", {})
@@ -69,7 +69,7 @@ export const Products = (props) => {
       });
   }, []);
 
-  const [categories, setCategories] = React.useState([]);
+  const [categories, setCategories] = React.useState();
   useEffect(() => {
     return axios
       .get("https://test-api-zamow-jedzenie.herokuapp.com/categories/", {})
@@ -184,6 +184,15 @@ export const Products = (props) => {
   console.log("categories", categories);
   const { state } = useLocation()
   
+  if ( products == undefined || categories == undefined) {
+    return (
+    <>
+    <Core />
+      loading...
+    </>
+    )
+  }
+  else
   return (
     <>
       <Core button={props.button} />
