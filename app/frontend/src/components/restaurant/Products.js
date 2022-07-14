@@ -157,7 +157,7 @@ export const Products = (props) => {
           .get("https://test-api-zamow-jedzenie.herokuapp.com/users/" + authService.getCurrentUser().id + "/orders/", {})
           .then(response => {
             orders = response.data;
-            cart = orders.find(e => e.status == 'cart')
+            cart = orders.find(e => e.status == 'cart' && e.restaurantId == props.restaurant.id)
             console.log(cart.id)
             axios
               .patch("https://test-api-zamow-jedzenie.herokuapp.com/orders/" + cart.id + "/", {
@@ -224,6 +224,16 @@ export const Products = (props) => {
                     <p>Pt 06:00 - 22:00</p>
                     <p>Sb 06:00 - 22:00</p>
                     <p>Nd 06:00 - 22:00</p>
+
+
+                    {/* <p>Pn {hours[0].from_hour_monday} - {hours[0].to_hour_monday}</p>
+                    <p>Wt {hours[0].from_hour_tuesday} - {hours[0].to_hour_tuesday}</p>
+                    <p>Śr {hours[0].from_hour_wednesday} - {hours[0].to_hour_wednesday}</p>
+                    <p>Czw {hours[0].from_hour_thursday} - {hours[0].to_hour_thursday}</p>
+                    <p>Pt {hours[0].from_hour_friday} - {hours[0].to_hour_friday}</p>
+                    <p>Sb {hours[0].from_hour_saturday} - {hours[0].to_hour_saturday}</p>
+                    <p>Nd {hours[0].from_hour_sunday} - {hours[0].to_hour_sunday}</p> */}
+
                   </Item>
                 </Grid>
 
