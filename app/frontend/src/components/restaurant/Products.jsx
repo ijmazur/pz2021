@@ -19,7 +19,7 @@ import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
 import Button from '@mui/material/Button';
-import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Paper from '@mui/material/Paper';
 import Container from '@mui/material/Container';
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
@@ -32,11 +32,12 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import Alert from '@mui/material/Alert';
+import { SnackbarProvider, VariantType, useSnackbar } from 'notistack';
+import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import { SliderValueLabelUnstyled } from '@mui/base';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import Stack from "@mui/material/Stack";
-
-
 
 const Item = styled(Paper)(({ theme }) => ({
 
@@ -180,8 +181,66 @@ export const Products = (props) => {
 
   }
 
+  const alertPopup = () => {
+    console.log("shit works xd?");
+    return (
+      <Alert severity="success" color="info">
+        This is a success alert — check it out!
+      </Alert>
+    );
+    console.log("shit works xd? maybe");
+  }
 
 
+  function ToastingAlert() {
+    const { enqueueSnackbar } = useSnackbar();
+
+    const handleClickVariant = (variant) => () => {
+      // variant could be success, error, warning, info, or default
+      enqueueSnackbar('This is a success message!', { variant });
+    };
+
+    return (
+      <React.Fragment>
+        <Button onClick={handleClickVariant('success')}>Show success snackbar</Button>
+      </React.Fragment>
+    );
+  }
+
+
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
+  function ToastingAgain() {
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickToast = () => {
+      setOpen(true);
+    };
+
+    const handleCloseToast = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+
+      setOpen(false);
+    };
+
+    return (
+      <Stack spacing={2} sx={{ width: '100%' }}>
+        <Button size="medium" onClick={handleClickToast} >
+          <>Dodaj do koszyka</>
+        </Button>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleCloseToast}>
+          <Alert onClose={handleCloseToast} severity="success" sx={{ width: '100%' }}>
+            This is a success message!1
+          </Alert>
+        </Snackbar>
+        <Alert severity="success">This is a success message!2</Alert>
+      </Stack>
+    );
+  }
 
 
 
@@ -296,27 +355,38 @@ export const Products = (props) => {
                         secondary={item.description}
                       />
 
-                      <Button variant="string" size="medium" onClick={() => {
-                        checkOrders(item.id)
-                      }} ><>Dodaj do koszyka</></Button>
+                      {/* <Button size="medium" onClick={() => {
+                        // checkOrders(item.id)
+                        alertPopup()
+                      }} ><>Dodaj do koszyka</></Button> */}
+
+                      {/* <SnackbarProvider maxSnack={3}>
+                        <Button size="medium" onClick={() => {
+                          // this.alertPopup();
+                          <ToastingAlert />
+                          console.log("fuck u");
+                        }}>
+                          <>Dodaj do koszyka</>
+                        </Button>
+                      </SnackbarProvider> */}
+
+                      
+                        <Button size="medium" onClick={ToastingAgain} >
+                          <>Dodaj do koszyka</>
+                        </Button>
+
 
                     </ListItem>
                     <Divider style={{ width: '100%' }} />
-                  
-                  
                   </>
                 )}
 
-                  
               </List>
+
             </Item>
-            <Stack direction="row" justifyContent="end">
-            <Button variant="string" startIcon={<ShoppingCartIcon />} component={Link} to="/cart">
-                    Koszyk
-                  </Button>
-                  </Stack>
           </Grid>
         </Grid>
+
       </Container>
       {/* <UserData userData={userData} /> */}
       <Footerv2 />

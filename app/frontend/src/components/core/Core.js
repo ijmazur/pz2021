@@ -223,7 +223,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
                 <ListItemText primary={'Historia'} />
               </ListItem>
               <Divider />
-              <ListItem button key={'Koszyk'} component={Link} to="/payment">
+              <ListItem button key={'Koszyk'} component={Link} to="/cart">
                 <ListItemIcon>
                <ShoppingCartIcon />
                 </ListItemIcon>
