@@ -1,10 +1,11 @@
 // import axios from 'axios';
 import React from 'react';
 import { Form } from 'react-bootstrap';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Core from '../core/Core';
 import { Button, TextField, FormLabel, Container, FormGroup, Grid } from '@mui/material';
-
+import profileService from '../../services/profile.service';
+import authService from '../../services/auth.service';
 
 export const Profile = (props, user) => {
 
@@ -37,6 +38,29 @@ export const Profile = (props, user) => {
         event.preventDefault()
         console.log('dupa')
     }
+
+    const onOptionChange = (option) => {
+        setSelectedStatus(option);
+    };
+
+    const [selectedStatus, setSelectedStatus] = useState();
+    const [profileList, setProfileList] = useState([]);
+    const loadProfiles = (option) => {
+        profileService.getProfiles(option).then(
+            (data) => {
+                setProfileList(data);
+            }
+        );
+    };
+    useEffect(() => {
+        //loadProfiles(selectedStatus.id);
+    }, [selectedStatus]);
+
+    const onProfileEdited = (profile) => {
+        profileService.updateProfile(profile).then(
+            () => loadProfiles(selectedStatus.id)
+        );
+    };
     // useEffect(() => {
     //     if(!userInfo){
     //         history.push("/");
@@ -49,6 +73,12 @@ export const Profile = (props, user) => {
     //         setPhone(userInfo.phone)
     //     }
     // }, [history, userInfo]);
+
+    const [userData, setUserData] = useState();
+    useEffect(() => {
+        setUserData(authService.getCurrentUser())
+    }, [])
+    // console.log("userData.firstName", userData.firstName);
 
     return (
         <>
@@ -69,7 +99,7 @@ export const Profile = (props, user) => {
                                 id="outlined-basic" 
                                 label="Wpisz Imię" 
                                 variant="outlined"
-                                value={name}
+                                value={name.firstName}
                                 onChange={(e) => setName(e.target.value)}/>
                         </FormGroup>
                         <FormGroup controlId='surname'>
@@ -78,7 +108,7 @@ export const Profile = (props, user) => {
                                 id="outlined-basic" 
                                 label="Wpisz Nazwisko" 
                                 variant="outlined"
-                                value={surname}
+                                value={surname.lastName}
                                 onChange={(e) => setSurname(e.target.value)}/>
                             </FormGroup>
                         <FormGroup controlId='address'>
@@ -87,7 +117,7 @@ export const Profile = (props, user) => {
                                 id="outlined-basic" 
                                 label="Wprowadź Adres" 
                                 variant="outlined"
-                                value={address}
+                                value={address.street}
                                 onChange={(e) => setAddress(e.target.value)}/>
                         </FormGroup>
                         <FormGroup controlId='city'>
@@ -96,7 +126,7 @@ export const Profile = (props, user) => {
                                 id="outlined-basic" 
                                 label="Wprowadź Miejscowość" 
                                 variant="outlined"
-                                value={city}
+                                value={city.city}
                                 onChange={(e) => setCity(e.target.value)}/>
                         </FormGroup>
                         <FormGroup controlId='postalCode'>
@@ -105,7 +135,7 @@ export const Profile = (props, user) => {
                                 id="outlined-basic" 
                                 label="Wprowadź Kod Pocztowy" 
                                 variant="outlined"
-                                value={postalCode}
+                                value={postalCode.postalCode}
                                 onChange={(e) => setPostalCode(e.target.value)}/>
                         </FormGroup>
                         <FormGroup controlId='phone'>
@@ -114,10 +144,10 @@ export const Profile = (props, user) => {
                                 id="outlined-basic" 
                                 label="Wprowadź Numer Telefonu" 
                                 variant="outlined"
-                                value={phone}
+                                value={phone.phoneNumber}
                                 onChange={(e) => setPhone(e.target.value)}/>
                         </FormGroup>
-                        <Button type="submit" varient="contained" onSubmit={formSubmit}>Update</Button>
+                        <Button type="submit" varient="contained" onSubmit={(editedProfile) => onProfileEdited(editedProfile)}>Update</Button>
                     </Form>
                 </Grid>
             </Container>    
